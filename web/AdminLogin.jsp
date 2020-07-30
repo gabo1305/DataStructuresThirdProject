@@ -4,8 +4,18 @@
 
 <body>
 
-<h2> seccion donde el admin escoge que hacer</h2>
+<h2>Pagina de login de admin</h2>
+
+<form action="Admin.jsp">
+    Username: <input type="text" name="adminUsername"> <br><br>
+
+    Password: <input type="password" name="adminPassword"> <br><br>
+
+    <input type="submit" value="Login">
+</form>
 
 </body>
+
+
 
 </html>
