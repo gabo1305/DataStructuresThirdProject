@@ -7,6 +7,7 @@ public class ArrayTools<T> {
         if(Source==null || appending==null)return;
         for(int i=0;i<appending.size();i++){
             Source.add(appending.get(i));
+
         }
 
     }
