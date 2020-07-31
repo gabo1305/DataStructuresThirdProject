@@ -16,7 +16,7 @@ public class Queue<T> {
      * @author Andrey Zuñiga
      */
     public Queue(){
-        reference=new DoubleList<>();
+        reference=new DoubleList<T>();
     }
 
     /**
@@ -52,5 +52,9 @@ public class Queue<T> {
             return reference.get(0);
         }
         return null;
+    }
+    public boolean isEmpty(){
+        if(reference==null)return true;
+        return reference.getLength()==0;
     }
 }

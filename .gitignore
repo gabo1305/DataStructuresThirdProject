@@ -1,2 +1,6 @@
 /.idea/
 /RailSpot.iml
+/out/
+/target/
+/src/test/java/
+/src/main/resources/
