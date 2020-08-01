@@ -2,7 +2,16 @@
 
 <title>Railspot Proyecto 3</title>
 
-<body>
+<head>
+    <style type="text/css">
+        #container {
+            max-width: 700px;
+            height: 700px;
+            margin: auto;
+            background-color: #E1E1E1;
+        }
+    </style>
+</head>
 
 <h1>Welcome to Railspot</h1>
 
@@ -13,6 +22,23 @@
 <form  action="AdminLogin.jsp">
     <input type="submit" value="Admin">
 </form>
+
+<body style="background-color: cornflowerblue">
+
+<div id="container"></div>
+<script src="build/sigma.min.js"></script>
+<script src="build/plugins/sigma.parsers.json.min.js"></script>
+<script>
+    sigma.parsers.json('estaciones.json', {
+        container: 'container',
+        settings: {
+            defaultNodeColor: '#ec5148',
+            edgeColor: '#000000'
+        }
+    });
+</script>
+
+
 
 </body>
 
