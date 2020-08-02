@@ -27,6 +27,13 @@
       "x": 7,
       "y": 14,
       "size": 3
+    },
+    {
+      "id": "nPuntarenas",
+      "label": "Puntarenas",
+      "x": 2,
+      "y": 14,
+      "size": 3
     }
   ],
   "edges": [
