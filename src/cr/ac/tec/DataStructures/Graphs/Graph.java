@@ -1,7 +1,7 @@
 package cr.ac.tec.DataStructures.Graphs;
 
+import cr.ac.tec.DataStructures.Array.ArrayTools;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
-import org.w3c.dom.Node;
 
 public  class Graph<T> {
     private DoubleList<T> Nodes;
@@ -20,14 +20,24 @@ public  class Graph<T> {
         if(!verification(pos1) || !verification(pos2))return;
         Matrix[pos1][pos2]=weight;
     }
-
     public double[][] getMatrix() {
         return Matrix;
     }
+    public void setRelationShip(double[][] relationShip){
+        if(relationShip==null)return;
+        if(relationShip.length!=Nodes.getLength())return;
+        this.Matrix=relationShip;
+    }
+
 
     private boolean verification(int data){
         if(data<0 || data>=Matrix.length)return false;
         return true;
+    }
+    public void AddNode(T addNode){
+        if(addNode==null)return;
+        Nodes.AddTail(addNode);
+        Matrix= ArrayTools.expandDoubleMatrix(Matrix);
     }
     public DoubleList<T> getRelationShips(T node){
         int pos=Nodes.FindFirstInstancePosition(node);
