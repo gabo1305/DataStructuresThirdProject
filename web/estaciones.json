@@ -20,6 +20,13 @@
       "x": 8,
       "y": 13,
       "size": 3
+    },
+    {
+      "id": "nGuarco",
+      "label": "Guarco",
+      "x": 7,
+      "y": 14,
+      "size": 3
     }
   ],
   "edges": [
@@ -37,6 +44,11 @@
       "id": "e2",
       "source": "nCartago",
       "target": "nHeredia"
+    },
+    {
+      "id": "e3",
+      "source": "nCartago",
+      "target": "nGuarco"
     }
   ]
 }
