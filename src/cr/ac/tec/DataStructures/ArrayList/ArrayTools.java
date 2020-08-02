@@ -1,5 +1,7 @@
 package cr.ac.tec.DataStructures.ArrayList;
 
+import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
+
 import java.util.ArrayList;
 
 public class ArrayTools<T> {
@@ -11,4 +13,13 @@ public class ArrayTools<T> {
         }
 
     }
+    public DoubleList<T> getDoubleList(T[] array){
+        if(array==null)return null;
+        DoubleList<T> List=new DoubleList<>();
+        for(int i=0;i<array.length;i++){
+            List.AddTail(array[i]);
+        }
+        return List;
+    }
+
 }
