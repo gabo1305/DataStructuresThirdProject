@@ -1,0 +1,61 @@
+{
+  "nodes": [
+    {
+      "id": "nHeredia",
+      "label": "Heredia",
+      "x": 5,
+      "y": 0,
+      "size": 3
+    },
+    {
+      "id": "nSanJose",
+      "label": "San Jose",
+      "x": 1,
+      "y": 15,
+      "size": 3
+    },
+    {
+      "id": "nCartago",
+      "label": "Cartago",
+      "x": 8,
+      "y": 13,
+      "size": 3
+    },
+    {
+      "id": "nGuarco",
+      "label": "Guarco",
+      "x": 7,
+      "y": 14,
+      "size": 3
+    },
+    {
+      "id": "nPuntarenas",
+      "label": "Puntarenas",
+      "x": 2,
+      "y": 14,
+      "size": 3
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "source": "nHeredia",
+      "target": "nSanJose"
+    },
+    {
+      "id": "e1",
+      "source": "nSanJose",
+      "target": "nCartago"
+    },
+    {
+      "id": "e2",
+      "source": "nCartago",
+      "target": "nHeredia"
+    },
+    {
+      "id": "e3",
+      "source": "nCartago",
+      "target": "nGuarco"
+    }
+  ]
+}
