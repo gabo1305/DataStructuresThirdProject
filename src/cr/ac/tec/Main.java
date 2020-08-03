@@ -1,12 +1,9 @@
 package cr.ac.tec;
 
-import cr.ac.tec.DataStructures.ArrayList.ArrayTools;
-import cr.ac.tec.DataStructures.Graphs.Graph;
-import cr.ac.tec.DataStructures.Graphs.GraphsAlgorithm.Dijkstra;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.DataStructures.LinkedList.List.Tools.LinkedListTool;
 import cr.ac.tec.FileProccessing.JsonExchange;
-import cr.ac.tec.Rail.Roads.Stopping;
+import cr.ac.tec.Rail.Roads.Nodes;
 
 import java.util.ArrayList;
 
@@ -19,20 +16,20 @@ public class Main {
     private static final String F="F";
     private static final String G="G";
     public static void main(String[] args) {
-        DoubleList<Stopping> List=new DoubleList<>();
-        List.AddTail(new Stopping(0,"Heredia"));
-        List.AddTail(new Stopping(1,"Santo Domingo"));
-        List.AddTail(new Stopping(2,"Tibas"));
-        List.AddTail(new Stopping(3,"Moravia"));
-        List.AddTail(new Stopping(4,"San Jose"));
-        List.AddTail(new Stopping(5,"San Pedro"));
-        List.AddTail(new Stopping(6,"Guadalupe"));
-        List.AddTail(new Stopping(7,"Sabanilla"));
-        List.AddTail(new Stopping(8,"Curridabat"));
-        List.AddTail(new Stopping(9,"Zapote"));
-        List.AddTail(new Stopping(10,"Tres Rios"));
-        List.AddTail(new Stopping(11,"Cartago"));
-        List.AddTail(new Stopping(12,"Paraiso"));
+        DoubleList<Nodes> List=new DoubleList<>();
+        List.AddTail(new Nodes(0,"Heredia"));
+        List.AddTail(new Nodes(1,"Santo Domingo"));
+        List.AddTail(new Nodes(2,"Tibas"));
+        List.AddTail(new Nodes(3,"Moravia"));
+        List.AddTail(new Nodes(4,"San Jose"));
+        List.AddTail(new Nodes(5,"San Pedro"));
+        List.AddTail(new Nodes(6,"Guadalupe"));
+        List.AddTail(new Nodes(7,"Sabanilla"));
+        List.AddTail(new Nodes(8,"Curridabat"));
+        List.AddTail(new Nodes(9,"Zapote"));
+        List.AddTail(new Nodes(10,"Tres Rios"));
+        List.AddTail(new Nodes(11,"Cartago"));
+        List.AddTail(new Nodes(12,"Paraiso"));
         double [][] matrix=new double[13][13];
         matrix[0][1]=1;
         matrix[1][0]=1;
@@ -62,10 +59,10 @@ public class Main {
         matrix[12][11]=1;
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
 
-        LinkedListTool<Stopping> tool=new LinkedListTool<>();
-        ArrayList<Stopping> the=tool.toJavaList(List);
-        //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
+        LinkedListTool<Nodes> tool=new LinkedListTool<>();
+        ArrayList<Nodes> the=tool.toJavaList(List);
+        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
         boolean[][] taken=new boolean[13][13];
-        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\TakenRoad.json",taken);
+        //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\TakenRoad.json",taken);
     }
 }

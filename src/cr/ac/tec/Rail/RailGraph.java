@@ -1,23 +1,28 @@
 package cr.ac.tec.Rail;
 
+import cr.ac.tec.Classes.Edges;
+import cr.ac.tec.Classes.RouteStation;
 import cr.ac.tec.DataStructures.ArrayList.ArrayTools;
 import cr.ac.tec.DataStructures.Graphs.Graph;
 import cr.ac.tec.DataStructures.Graphs.GraphsAlgorithm.Dijkstra;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.DataStructures.LinkedList.List.Tools.LinkedListTool;
 import cr.ac.tec.FileProccessing.JsonExchange;
-import cr.ac.tec.Rail.Roads.Stopping;
+import cr.ac.tec.Rail.Roads.Nodes;
 
 import java.util.ArrayList;
 
 public class RailGraph {
+    private static final int from=0;
+    private static final int to=1;
     private static int StoppingID;
     private final int NullState=0;
     private final String NodesRoute="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json";
     private final String RelationRoute="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json";
-    private Dijkstra<Stopping> dijkstra;
-    private Graph<Stopping> graph;
-    private DoubleList<Stopping> nodes;
+    private final String graphReferenceRelationShip="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\web\\estaciones.json";
+    private Dijkstra<Nodes> dijkstra;
+    private Graph<Nodes> graph;
+    private DoubleList<Nodes> nodes;
     private static RailGraph instance;
     private RailGraph(){
         graph=new Graph(getNodes());
@@ -37,42 +42,55 @@ public class RailGraph {
         }
         return instance;
     }
-    private DoubleList<Stopping> getNodes(){
-        Stopping[] stopping=(Stopping[])JsonExchange.getObjectFromJson(NodesRoute,Stopping[].class);
-        ArrayTools<Stopping> tools=new ArrayTools<>();
-        return tools.getDoubleList(stopping);
+    private DoubleList<Nodes> getNodes(){
+        Nodes[] nodes =(Nodes[])JsonExchange.getObjectFromJson(NodesRoute, Nodes[].class);
+        ArrayTools<Nodes> tools=new ArrayTools<>();
+        return tools.getDoubleList(nodes);
     }
     private double[][] getRoads(){
         return (double[][])JsonExchange.getObjectFromJson(RelationRoute,double[][].class);
     }
-    public void AddRelationShip(Stopping Init, Stopping End,int weight){
+    public void AddRelationShip(Nodes Init, Nodes End, int weight){
         graph.AddRelationShip(Init,End,weight);
         writeData();
     }
-    public void DeleteRelationShip(Stopping init,Stopping End){
+    public void DeleteRelationShip(Nodes init, Nodes End){
         graph.AddRelationShip(init,End,NullState);
         writeData();
     }
-    public int getPosition(Stopping stopping){
-        return nodes.FindFirstInstancePosition(stopping);
+    public int getPosition(Nodes nodes){
+        return this.nodes.FindFirstInstancePosition(nodes);
     }
     public void writeData(){
         double[][] matrix=graph.getMatrix();
-        LinkedListTool<Stopping> tool=new LinkedListTool<>();
-        ArrayList<Stopping>  nodes=tool.toJavaList(graph.getNodes());
+        LinkedListTool<Nodes> tool=new LinkedListTool<>();
+        ArrayList<Nodes>  nodes=tool.toJavaList(graph.getNodes());
         JsonExchange.toJsonFromObject(RelationRoute,matrix);
         JsonExchange.toJsonFromObject(NodesRoute,nodes);
+        updateGraphReference();
     }
-    public DoubleList<Stopping> getShortestRoad(Stopping init, Stopping End){
+    public DoubleList<Nodes> getShortestRoad(Nodes init, Nodes End){
         return dijkstra.getShortestRoute(init, End);
     }
     public void addStopping(String Name){
-        Stopping stopping=new Stopping(StoppingID,Name);
-        graph.AddNode(stopping);
+        Nodes nodes =new Nodes(StoppingID,Name);
+        graph.AddNode(nodes);
         StoppingID++;
     }
     public int getLen(){
         return graph.NodesNumber();
+    }
+    public void updateGraphReference(){
+        LinkedListTool<Nodes> tool=new LinkedListTool<>();
+        ArrayList<Nodes> Nodes=tool.toJavaList(graph.getNodes());
+        ArrayList<ArrayList<Nodes>> RelationList=graph.getRelationShips();
+        ArrayList<Edges> edges=new ArrayList<>();
+        for (int i=0;i<RelationList.size();i++){
+            edges.add(new Edges(RelationList.get(i),Integer.toString(i)));
+        }
+        RouteStation routeStation=new RouteStation(Nodes,edges);
+        JsonExchange.toJsonFromObject(graphReferenceRelationShip,routeStation);
+
     }
 
 }

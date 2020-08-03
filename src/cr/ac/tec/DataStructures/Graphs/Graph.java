@@ -2,10 +2,16 @@ package cr.ac.tec.DataStructures.Graphs;
 
 import cr.ac.tec.DataStructures.Array.ArrayTools;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
+import cr.ac.tec.DataStructures.LinkedList.List.Tools.LinkedListTool;
+
+import java.util.ArrayList;
 
 public  class Graph<T> {
     private DoubleList<T> Nodes;
     private double[][] Matrix;
+    private final int relationSize=2;
+    private final int from=0;
+    private final int to=1;
     public Graph(DoubleList<T> List){
         this.Nodes=List;
         if(List==null)List=new DoubleList<T>();
@@ -48,6 +54,21 @@ public  class Graph<T> {
             if(temp[i]>0) returning.AddTail(Nodes.get(i));
         }
         return returning;
+    }
+    public ArrayList<ArrayList<T>> getRelationShips(){
+        ArrayList<ArrayList<T>> List=new ArrayList<>();
+        DoubleList<T> NodesRelations;
+        ArrayList<T> arrayList;
+        for(int i=0;i<Nodes.getLength();i++){
+            NodesRelations=getRelationShips(Nodes.get(i));
+            for(int j=0;j<NodesRelations.getLength();j++){
+                arrayList=new ArrayList<>();
+                arrayList.add(Nodes.get(i));
+                arrayList.add(NodesRelations.get(j));
+                List.add(arrayList);
+            }
+        }
+        return List;
     }
     public int NodesNumber(){
         if(Nodes==null)return 0;

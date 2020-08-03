@@ -4,7 +4,7 @@ import cr.ac.tec.DataStructures.Tree.BinaryTree;
 import cr.ac.tec.FileProccessing.JsonExchange;
 import cr.ac.tec.Rail.Accounts.User;
 import cr.ac.tec.Rail.Purchase.Ticket;
-import cr.ac.tec.Rail.Roads.Stopping;
+import cr.ac.tec.Rail.Roads.Nodes;
 
 public class TicketsTree extends InfoTree<Ticket> {
     private static int IDCounter;
@@ -29,7 +29,7 @@ public class TicketsTree extends InfoTree<Ticket> {
         Ticket[] tickets=(Ticket[]) JsonExchange.getObjectFromJson(route,Ticket[].class);
         Tree.append(tickets);
     }
-    public void createTicket(User user, Stopping... trajectory){
+    public void createTicket(User user, Nodes... trajectory){
         if(user==null || trajectory==null)return;
         Ticket ticket=new Ticket(user.getID(),trajectory);
         ticket.setID(IDCounter);

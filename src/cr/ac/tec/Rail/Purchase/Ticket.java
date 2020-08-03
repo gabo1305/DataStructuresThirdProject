@@ -1,6 +1,6 @@
 package cr.ac.tec.Rail.Purchase;
 
-import cr.ac.tec.Rail.Roads.Stopping;
+import cr.ac.tec.Rail.Roads.Nodes;
 
 import java.util.Date;
 
@@ -19,7 +19,7 @@ public class Ticket implements Comparable{
 
     private String UserID;
 
-    public Ticket(String UserID,Stopping... trajectory){
+    public Ticket(String UserID, Nodes... trajectory){
         setTrajectory(trajectory);
         this.UserID=UserID;
         this.date=new Date();
@@ -29,7 +29,7 @@ public class Ticket implements Comparable{
         return trajectory;
     }
 
-    public void setTrajectory(Stopping... trajectory) {
+    public void setTrajectory(Nodes... trajectory) {
         if(trajectory==null)return;
         this.trajectory = new String[trajectory.length];
         for(int i=0;i<trajectory.length;i++){
