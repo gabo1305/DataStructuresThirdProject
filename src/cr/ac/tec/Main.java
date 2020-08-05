@@ -52,16 +52,17 @@ public class Main {
         matrix[8][10]=1;
         matrix[9][4]=1;
         matrix[9][10]=1;
+        matrix[10][7]=1;
         matrix[10][9]=1;
         matrix[10][11]=1;
         matrix[11][10]=1;
         matrix[11][12]=1;
         matrix[12][11]=1;
-        //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
+        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
 
         LinkedListTool<Nodes> tool=new LinkedListTool<>();
         ArrayList<Nodes> the=tool.toJavaList(List);
-        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
+        //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
         boolean[][] taken=new boolean[13][13];
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\TakenRoad.json",taken);
     }

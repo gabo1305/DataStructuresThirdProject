@@ -3,6 +3,7 @@ package cr.ac.tec.Rail.RequestManager;
 
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.Rail.Accounts.User;
+import cr.ac.tec.Rail.Purchase.Ticket;
 import cr.ac.tec.Rail.RailGraph;
 import cr.ac.tec.Rail.Roads.Nodes;
 import cr.ac.tec.Rail.TakenRoad;
@@ -35,10 +36,18 @@ public class RequestManager {
         User user=new User(id);
         usersTree.attach(user);
     }
-    public void BuyTicket(User user, Nodes start, Nodes end){
+    public Ticket BuyTicket(String name, String start, String end){
+        User user=new User(name);
         User myUser=getUser(user);
-        DoubleList<Nodes> route=graph.getShortestRoad(start,end);
-
+        Nodes startPoint=graph.getNode(start);
+        Nodes endPoint=graph.getNode(end);
+        if(startPoint==null || endPoint==null)return null;
+        DoubleList<Nodes> route=graph.getShortestRoad(startPoint,endPoint);
+        markTakenRoute(route);
+        Ticket ticket=ticketsTree.createTicket(user,route);
+        myUser.addTicket(ticket);
+        usersTree.updateFile();
+        return ticket;
 
     }
     public User getUser(User user){

@@ -1,5 +1,6 @@
 package cr.ac.tec.Rail.Purchase;
 
+import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.Rail.Roads.Nodes;
 
 import java.util.Date;
@@ -23,6 +24,19 @@ public class Ticket implements Comparable{
         setTrajectory(trajectory);
         this.UserID=UserID;
         this.date=new Date();
+    }
+    public Ticket(String UserID, DoubleList<Nodes> doubleList){
+        this.UserID=UserID;
+        this.date=new Date();
+        setTrajectory(doubleList);
+
+    }
+    public void setTrajectory(DoubleList<Nodes> List){
+        if(List==null)return;
+        this.trajectory=new String[List.getLength()];
+        for(int i=0;i<List.getLength();i++){
+            trajectory[i]=List.get(i).toString();
+        }
     }
 
     public String[] getTrajectory() {

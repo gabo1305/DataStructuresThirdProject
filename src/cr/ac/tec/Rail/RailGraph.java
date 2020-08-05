@@ -76,6 +76,7 @@ public class RailGraph {
         Nodes nodes =new Nodes(StoppingID,Name);
         graph.AddNode(nodes);
         StoppingID++;
+        writeData();
     }
     public int getLen(){
         return graph.NodesNumber();
@@ -91,6 +92,13 @@ public class RailGraph {
         RouteStation routeStation=new RouteStation(Nodes,edges);
         JsonExchange.toJsonFromObject(graphReferenceRelationShip,routeStation);
 
+    }
+    public Nodes getNode(String ID){
+        DoubleList<Nodes> TheNodes=graph.getNodes();
+        for(int i=0;i<TheNodes.getLength();i++){
+            if(ID.equalsIgnoreCase(TheNodes.get(i).toString()))return TheNodes.get(i);
+        }
+        return null;
     }
 
 }

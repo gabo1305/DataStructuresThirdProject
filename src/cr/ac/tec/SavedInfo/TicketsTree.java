@@ -1,5 +1,6 @@
 package cr.ac.tec.SavedInfo;
 
+import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.DataStructures.Tree.BinaryTree;
 import cr.ac.tec.FileProccessing.JsonExchange;
 import cr.ac.tec.Rail.Accounts.User;
@@ -28,13 +29,15 @@ public class TicketsTree extends InfoTree<Ticket> {
     public void getData() {
         Ticket[] tickets=(Ticket[]) JsonExchange.getObjectFromJson(route,Ticket[].class);
         Tree.append(tickets);
+        IDCounter=tickets.length;
     }
-    public void createTicket(User user, Nodes... trajectory){
-        if(user==null || trajectory==null)return;
+    public Ticket createTicket(User user, DoubleList<Nodes> trajectory){
+        if(user==null || trajectory==null)return null;
         Ticket ticket=new Ticket(user.getID(),trajectory);
         ticket.setID(IDCounter);
         attach(ticket);
         user.addTicket(ticket);
         IDCounter++;
+        return ticket;
     }
 }

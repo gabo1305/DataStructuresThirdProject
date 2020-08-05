@@ -77,6 +77,6 @@ public class Nodes implements Comparable {
 
     @Override
     public String toString() {
-        return label;
+        return id;
     }
 }
