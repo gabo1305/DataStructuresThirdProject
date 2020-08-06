@@ -6,7 +6,7 @@
 
 <h2>Pagina de login de admin</h2>
 
-<form action="Admin.jsp">
+<form action="Adminlog">
     Username: <input type="text" name="adminUsername"> <br><br>
 
     Password: <input type="password" name="adminPassword"> <br><br>
