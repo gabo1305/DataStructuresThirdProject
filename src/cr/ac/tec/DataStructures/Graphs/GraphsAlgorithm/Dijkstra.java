@@ -48,7 +48,7 @@ public class Dijkstra<T> {
     }
     private void analyze(int node,double[] values,double[] relationShips,int[] predecessor,DoubleList<Integer> visited){
         for(int i=0;i<relationShips.length;i++){
-            if(relationShips[i]>0){
+            if(relationShips[i]<+Integer.MAX_VALUE){
                 if(values[node]+relationShips[i]<values[i]){
                     values[i]=values[node]+relationShips[i];
                     predecessor[i]=node;

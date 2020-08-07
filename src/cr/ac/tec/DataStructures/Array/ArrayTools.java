@@ -27,4 +27,27 @@ public class ArrayTools<T> {
         }
         return newMatrix;
     }
+    public static double [][] deleteDoubleRow(double[][] matrix, int pos){
+        if(matrix==null)return null;
+        if(pos<0 || pos>=matrix.length)return matrix;
+        double[][] newMatrix=new double[matrix.length-1][matrix.length-1];
+        double[] array;
+        int ded1=0;
+        int ded2=0;
+        for(int i=0;i<matrix.length;i++){
+            if(i!=pos) {
+                array = new double[matrix.length - 1];
+                for (int j = 0; j < matrix.length; j++) {
+                    if(j!=pos){
+                        array[j-ded2]=matrix[i][j];
+                    }
+                    else ded2++;
+                }
+                newMatrix[i-ded1]=array;
+                ded2=0;
+            }
+            else ded1++;
+        }
+        return newMatrix;
+    }
 }

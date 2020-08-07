@@ -3,6 +3,7 @@ package cr.ac.tec.DataStructures.Graphs;
 import cr.ac.tec.DataStructures.Array.ArrayTools;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.DataStructures.LinkedList.List.Tools.LinkedListTool;
+import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,18 @@ public  class Graph<T> {
         this.Nodes=List;
         if(List==null)List=new DoubleList<T>();
         this.Matrix=new double[Nodes.getLength()][Nodes.getLength()];
+        initiateMatrix();
+    }
+    private void initiateMatrix(){
+        for(int i=0;i<Matrix.length;i++){
+            initiateArray(Matrix[i]);
+        }
+    }
+    private void initiateArray(double[] List){
+        if(List==null)return;
+        for(int i=0;i<List.length;i++){
+            List[i]=Integer.MAX_VALUE;
+        }
     }
     public DoubleList<T> getNodes(){
         return Nodes;
@@ -44,6 +57,19 @@ public  class Graph<T> {
         if(addNode==null)return;
         Nodes.AddTail(addNode);
         Matrix= ArrayTools.expandDoubleMatrix(Matrix);
+        initiateArray(Matrix[Matrix.length-1]);
+        initiateLastPosition();
+    }
+    public void deleteNode(T node){
+        int pos= Nodes.FindFirstInstancePosition(node);
+        if(pos<0)return;
+        Nodes.delete(pos);
+        Matrix=ArrayTools.deleteDoubleRow(Matrix,pos);
+    }
+    private void initiateLastPosition(){
+        for(int i=0;i<Matrix.length;i++){
+            Matrix[i][Matrix.length-1]=Integer.MAX_VALUE;
+        }
     }
     public DoubleList<T> getRelationShips(T node){
         int pos=Nodes.FindFirstInstancePosition(node);
@@ -51,7 +77,7 @@ public  class Graph<T> {
         double[] temp=Matrix[pos];
         DoubleList<T> returning=new DoubleList<T>();
         for(int i=0;i<temp.length;i++){
-            if(temp[i]>0) returning.AddTail(Nodes.get(i));
+            if(temp[i]<Integer.MAX_VALUE) returning.AddTail(Nodes.get(i));
         }
         return returning;
     }
