@@ -30,6 +30,7 @@ public class RailGraph {
         dijkstra=new Dijkstra<>();
         dijkstra.setGraph(graph);
         nodes=graph.getNodes();
+        updateGraphReference();
         StoppingID=graph.NodesNumber();
     }
     public static RailGraph getInstance(){
@@ -91,6 +92,13 @@ public class RailGraph {
         }
         RouteStation routeStation=new RouteStation(Nodes,edges);
         JsonExchange.toJsonFromObject(graphReferenceRelationShip,routeStation);
+
+    }
+    public void deleteNode(String id){
+        Nodes node=getNode(id);
+        if(node==null)return;
+        graph.deleteNode(node);
+        writeData();
 
     }
     public Nodes getNode(String ID){

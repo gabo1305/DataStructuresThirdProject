@@ -1,5 +1,7 @@
 package cr.ac.tec.Proves;
 
+import com.google.gson.internal.bind.util.ISO8601Utils;
+import cr.ac.tec.DataStructures.Array.ArrayTools;
 import cr.ac.tec.DataStructures.Graphs.Graph;
 import cr.ac.tec.DataStructures.Graphs.GraphsAlgorithm.Dijkstra;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
@@ -13,29 +15,35 @@ public class Main {
     private static String F="F";
     private static String G="G";
     public static void main(String[] args) {
-        DoubleList<String> nodes=new DoubleList<String>();
-        nodes.AddTail(A);
-        nodes.AddTail(B);
-        nodes.AddTail(C);
-        nodes.AddTail(D);
-        nodes.AddTail(E);
-        nodes.AddTail(F);
-        Graph<String> graph=new Graph<String>(nodes);
-        graph.AddRelationShip(A,B,50);
-        graph.AddRelationShip(A,C,30);
-        graph.AddRelationShip(B,D,90);
-        graph.AddRelationShip(C,A,45);
-        graph.AddRelationShip(E,F,100);
-        graph.AddRelationShip(E,A,120);
-        graph.AddRelationShip(F,D,40);
-        Dijkstra<String> finder=new Dijkstra<String>();
-        finder.setGraph(graph);
-        DoubleList<String> route=finder.getShortestRoute(E,B);
-        double price=finder.getPrice(E,B);
-        System.out.println("El precio es "+price);
-        for(int i=0;i<route.getLength();i++){
-            System.out.println(route.get(i));
+        DoubleList<String> List=new DoubleList<>();
+        List.AddTail(A);
+        List.AddTail(B);
+        List.AddTail(C);
+        List.AddTail(D);
+        List.AddTail(E);
+        List.AddTail(F);
+        Graph<String> graph=new Graph<>(List);
+        graph.AddRelationShip(A,C,40);
+        graph.AddRelationShip(A,F,62);
+        graph.AddRelationShip(B,A,102);
+        graph.AddRelationShip(B,E,33);
+        graph.AddRelationShip(C,A,50);
+        graph.AddRelationShip(C,B,44);
+        graph.AddRelationShip(C,D,60);
+        graph.AddRelationShip(D,C,73);
+        graph.AddRelationShip(E,B,45);
+        graph.AddRelationShip(F,B,45);
+        graph.AddRelationShip(F,E,98);
+        graph.AddNode(G);
+        graph.AddNode("H");
+        graph.AddRelationShip(D,G,90);
+        Dijkstra<String> dijkstra=new Dijkstra<>();
+        dijkstra.setGraph(graph);
+        DoubleList<String> NList=dijkstra.getShortestRoute(E,D);
+        for(int i=0;i<NList.getLength();i++){
+            System.out.println(NList.get(i));
         }
-
+        System.out.println(dijkstra.getPrice(E,D));
+        System.out.println(dijkstra.getPrice(F,G));
     }
 }

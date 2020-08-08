@@ -54,5 +54,47 @@ public class TakenRoad {
         taken=matrix;
         writeFile();
     }
+    public boolean verifyFrom(int pos){
+        if(pos<0 || pos>taken.length)return false;
+        boolean[] booleans=taken[pos];
+        for(int i=0;i<booleans.length;i++){
+            if(booleans[i])return true;
+        }
+        return false;
+    }
+    public boolean verifyTo(int pos){
+        if(pos<0 || pos>=taken.length)return false;
+        for(int i=0;i<taken.length;i++){
+            if(taken[i][pos])return true;
+        }
+        return false;
+    }
+    public void delete(int pos){
+        if(pos<0 || pos>=taken.length)return;
+        int ded1=0;
+        int ded2=0;
+        boolean[][] newMatrix=new boolean[taken.length-1][taken.length-1];
+        for(int i=0;i<taken.length;i++){
+            if(i==pos){
+                ded1++;
+                continue;
+            }
+            boolean [] array=new boolean[taken.length-1];
+            for(int j=0;j<taken.length;j++){
+                if(j==pos){
+                    ded2++;
+                    continue;
+                }
+                array[j-ded2]=taken[i][j];
+            }
+            newMatrix[i-ded1]=array;
+            ded2=0;
+        }
+        taken=newMatrix;
+        writeFile();
+    }
+    public int getLen(){
+        return taken.length;
+    }
 
 }

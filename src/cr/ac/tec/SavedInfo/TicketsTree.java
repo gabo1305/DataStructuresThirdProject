@@ -8,7 +8,7 @@ import cr.ac.tec.Rail.Purchase.Ticket;
 import cr.ac.tec.Rail.Roads.Nodes;
 
 public class TicketsTree extends InfoTree<Ticket> {
-    private static int IDCounter;
+    private static int IDCounter=0;
     private static TicketsTree instance;
     private TicketsTree(){
         route="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Tickets.json";
@@ -28,6 +28,7 @@ public class TicketsTree extends InfoTree<Ticket> {
     @Override
     public void getData() {
         Ticket[] tickets=(Ticket[]) JsonExchange.getObjectFromJson(route,Ticket[].class);
+        if(tickets==null)return;
         Tree.append(tickets);
         IDCounter=tickets.length;
     }

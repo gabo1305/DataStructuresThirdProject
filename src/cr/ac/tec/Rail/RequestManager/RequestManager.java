@@ -72,6 +72,17 @@ public class RequestManager {
         graph.addStopping(Name);
         takenRoad.expandMatrix();
     }
+    public void deleteNode(String Name){
+       int pos= graph.getPosition(graph.getNode(Name));
+       if(pos<0 || pos>=takenRoad.getLen())return;
+       if(takenRoad.verifyTo(pos))return;
+       if(takenRoad.verifyFrom(pos))return;
+       graph.deleteNode(Name);
+       takenRoad.delete(pos);
+    }
+    public void deleteRelationShip(String Name1, String Name2){
+
+    }
     public void updateGraphFileRep(){
         graph.updateGraphReference();
     }
