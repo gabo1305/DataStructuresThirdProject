@@ -1,8 +1,25 @@
 <html>
 
 <title>Admin</title>
+<script src="noBack.js"></script>
 
-<body>
+<script>
+    function estaciones() {
+        var d = new Date();
+        var currentYear = d.getFullYear();
+        var currentMonth = d.getMonth()+1;
+        var yroptions = "<option value='0'> select</option>";
+
+        for (var i = currentYear; i <currentYear+5;i++){
+            yroptions += "<option value='"+i+"'>"+i+"</option>"
+        }
+        document.getElementById('dropdownEstaciones').innerHTML = yroptions;
+
+    }
+</script>
+
+<body onload="estaciones()">
+
 
 <h2>Seccion donde el admin escoge que hacer</h2>
 
@@ -25,10 +42,8 @@
 
 Con esto podemos escoger cual estacion tiene viajes pendientes
 <form>
-    <select name = "dropdown">
-        <option value = "Cartago">Cartago</option>
-        <option value = "Heredia">Heredia</option>
-        <option value = "San Jose">San Jose</option>
+    <select id = "dropdownEstaciones">
+
     </select>
 </form>
 

@@ -1,7 +1,7 @@
 <html>
 
 <title>Compra</title>
-
+<script src="noBack.js"></script>
 <body>
 
 <h2> Pagina de compra</h2>
