@@ -1,25 +1,28 @@
+const url='http://localhost:9080/cual';
 var Http= new XMLHttpRequest();
-
+const event1="clickNode";
+const HttpMethod="GET";
 
 async function xd(callback){
-    const url='http://localhost:9080/cual';
-    Http.open("GET", url);
+    Http.open(HttpMethod, url);
     Http.send();
 
     Http.onreadystatechange = (e) => {
-        console.log("me quiero matar")
         console.log(Http.responseText)
 
 
         var graph =JSON.parse(Http.responseText);
         s.graph.read(graph);
+        s.bind(event1, function (node) {
+            node.data.node.color="#4e1b99";
+            s.refresh();
+        });
         s.refresh();
 
+
     }
-    console.log("por favor dios")
 }
 
-// Initialise sigma:
 var s = new sigma(
     {
         renderer: {
@@ -37,4 +40,4 @@ var s = new sigma(
 
 // Create a graph object
 
-xd()
+xd();

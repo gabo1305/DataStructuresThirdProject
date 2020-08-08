@@ -71,6 +71,7 @@ public class RequestManager {
     public void addNode(String Name){
         graph.addStopping(Name);
         takenRoad.expandMatrix();
+        updateGraphFileRep();
     }
     public void deleteNode(String Name){
        int pos= graph.getPosition(graph.getNode(Name));
@@ -79,8 +80,14 @@ public class RequestManager {
        if(takenRoad.verifyFrom(pos))return;
        graph.deleteNode(Name);
        takenRoad.delete(pos);
+       updateGraphFileRep();
     }
     public void deleteRelationShip(String Name1, String Name2){
+        Nodes node1=graph.getNode(Name1);
+        Nodes node2=graph.getNode(Name2);
+        if(node1==null || node2==null)return;
+        graph.DeleteRelationShip(node1,node2);
+        updateGraphFileRep();
 
     }
     public void updateGraphFileRep(){

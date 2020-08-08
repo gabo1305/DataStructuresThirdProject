@@ -59,7 +59,12 @@ public class Main {
         matrix[11][10]=1;
         matrix[11][12]=1;
         matrix[12][11]=1;
-       // JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix.length;j++){
+                if(matrix[i][j]!=1)matrix[i][j]=Integer.MAX_VALUE;
+            }
+        }
+        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
         RequestManager requestManager = RequestManager.getInstance(5);
         requestManager.updateGraphFileRep();
         LinkedListTool<Nodes> tool=new LinkedListTool<>();
