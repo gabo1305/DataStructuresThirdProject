@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<script src="noBack.js"></script>
 <head>
     <title>Login</title>
 </head>

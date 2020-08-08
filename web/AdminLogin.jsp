@@ -1,7 +1,7 @@
 <html>
 
 <title>Admin</title>
-
+<script src="noBack.js"></script>
 <body>
 
 <h2>Pagina de login de admin</h2>
