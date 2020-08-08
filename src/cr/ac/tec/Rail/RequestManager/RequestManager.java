@@ -6,6 +6,7 @@ import cr.ac.tec.Rail.Accounts.User;
 import cr.ac.tec.Rail.Purchase.Ticket;
 import cr.ac.tec.Rail.RailGraph;
 import cr.ac.tec.Rail.Roads.Nodes;
+import cr.ac.tec.Rail.RouteRegister;
 import cr.ac.tec.Rail.TakenRoad;
 import cr.ac.tec.SavedInfo.TicketsTree;
 import cr.ac.tec.SavedInfo.UsersTree;
@@ -13,20 +14,21 @@ import cr.ac.tec.SavedInfo.UsersTree;
 public class RequestManager {
     private static RequestManager instance;
     private RailGraph graph;
-    private TakenRoad takenRoad;
     private UsersTree usersTree;
     private TicketsTree ticketsTree;
-    private RequestManager(int a){
+    private RouteRegister register;
+    private RequestManager(){
         graph=RailGraph.getInstance();
-        takenRoad=TakenRoad.getInstance(a);
         usersTree=UsersTree.getInstance();
         ticketsTree=TicketsTree.getInstance();
+        register=new RouteRegister();
+
     }
-    public static RequestManager getInstance(int a){
+    public static RequestManager getInstance(){
         if(instance==null){
             synchronized (RequestManager.class){
                 if(instance==null){
-                    instance=new RequestManager(a);
+                    instance=new RequestManager();
                 }
             }
         }
@@ -43,8 +45,9 @@ public class RequestManager {
         Nodes endPoint=graph.getNode(end);
         if(startPoint==null || endPoint==null)return null;
         DoubleList<Nodes> route=graph.getShortestRoad(startPoint,endPoint);
-        markTakenRoute(route);
+        if(route==null || route.isEmpty())return null;
         Ticket ticket=ticketsTree.createTicket(user,route);
+       markTakenRoute(route,ticket.getID());
         myUser.addTicket(ticket);
         usersTree.updateFile();
         return ticket;
@@ -58,37 +61,43 @@ public class RequestManager {
         }
         return returning;
     }
-    private void markTakenRoute(DoubleList<Nodes> List){
+    private void markTakenRoute(DoubleList<Nodes> List,int id){
         if(List==null)return;
         int a;
         int b;
         for(int i=0;i<List.getLength()-1;i++){
             a=graph.getPosition(List.get(i));
             b=graph.getPosition(List.get(i+1));
-            takenRoad.setState(a,b,true);
+            register.AddData(id,a,b);
         }
     }
     public void addNode(String Name){
         graph.addStopping(Name);
-        takenRoad.expandMatrix();
+        register.expand();
         updateGraphFileRep();
     }
-    public void deleteNode(String Name){
-       int pos= graph.getPosition(graph.getNode(Name));
-       if(pos<0 || pos>=takenRoad.getLen())return;
-       if(takenRoad.verifyTo(pos))return;
-       if(takenRoad.verifyFrom(pos))return;
-       graph.deleteNode(Name);
-       takenRoad.delete(pos);
-       updateGraphFileRep();
-    }
-    public void deleteRelationShip(String Name1, String Name2){
+    public void addRelationShip(String Name1,String Name2,int weight){
         Nodes node1=graph.getNode(Name1);
         Nodes node2=graph.getNode(Name2);
         if(node1==null || node2==null)return;
+        graph.AddRelationShip(node1,node2,weight);
+        updateGraphFileRep();
+    }
+    public boolean deleteNode(String Name){
+       int pos= graph.getPosition(graph.getNode(Name));
+       if(!register.deleteNode(pos))return false;
+       graph.deleteNode(Name);
+       updateGraphFileRep();
+       return true;
+    }
+    public boolean deleteRelationShip(String Name1, String Name2){
+        Nodes node1=graph.getNode(Name1);
+        Nodes node2=graph.getNode(Name2);
+        if(node1==null || node2==null)return false;
+        if(!register.check(graph.getPosition(node1),graph.getPosition(node2)))return false;
         graph.DeleteRelationShip(node1,node2);
         updateGraphFileRep();
-
+        return true;
     }
     public void updateGraphFileRep(){
         graph.updateGraphReference();

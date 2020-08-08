@@ -37,7 +37,7 @@ public class TicketsTree extends InfoTree<Ticket> {
         Ticket ticket=new Ticket(user.getID(),trajectory);
         ticket.setID(IDCounter);
         attach(ticket);
-        user.addTicket(ticket);
+      ///  user.addTicket(ticket);
         IDCounter++;
         return ticket;
     }

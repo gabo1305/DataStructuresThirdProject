@@ -9,6 +9,7 @@ public class Ticket implements Comparable{
     private int ID;
     private String[] trajectory;
     private Date date;
+    private String UserID;
 
     public int getID() {
         return ID;
@@ -18,7 +19,7 @@ public class Ticket implements Comparable{
         this.ID = ID;
     }
 
-    private String UserID;
+
 
     public Ticket(String UserID, Nodes... trajectory){
         setTrajectory(trajectory);
@@ -74,4 +75,5 @@ public class Ticket implements Comparable{
         Ticket ticket=(Ticket) o;
         return Integer.compare(this.ID,ticket.ID);
     }
+
 }

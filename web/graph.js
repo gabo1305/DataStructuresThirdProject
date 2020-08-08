@@ -27,13 +27,17 @@ var s = new sigma(
     {
         renderer: {
             container: document.getElementById('sigma-container'),
-            type: 'canvas'
+            type: 'canvas',
+            color:"#e1db00"
         },
         settings: {
-            minEdgeSize: 0.1,
-            maxEdgeSize: 2,
-            minNodeSize: 1,
-            maxNodeSize: 8,
+            minArrowSize:8,
+            minNodeSize: 20,
+            arrowSizeRatio: 1
+
+
+
+
         }
     }
 );

@@ -5,6 +5,7 @@ import cr.ac.tec.DataStructures.LinkedList.List.Tools.LinkedListTool;
 import cr.ac.tec.FileProccessing.JsonExchange;
 import cr.ac.tec.Rail.RequestManager.RequestManager;
 import cr.ac.tec.Rail.Roads.Nodes;
+import cr.ac.tec.Rail.RouteRegister;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,7 @@ public class Main {
         matrix[9][4]=1;
         matrix[9][10]=1;
         matrix[10][7]=1;
+        matrix[10][8]=1;
         matrix[10][9]=1;
         matrix[10][11]=1;
         matrix[11][10]=1;
@@ -64,13 +66,16 @@ public class Main {
                 if(matrix[i][j]!=1)matrix[i][j]=Integer.MAX_VALUE;
             }
         }
-        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
-        RequestManager requestManager = RequestManager.getInstance(5);
+        //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
+        RequestManager requestManager = RequestManager.getInstance();
         requestManager.updateGraphFileRep();
         LinkedListTool<Nodes> tool=new LinkedListTool<>();
         ArrayList<Nodes> the=tool.toJavaList(List);
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
         boolean[][] taken=new boolean[13][13];
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\TakenRoad.json",taken);
+        RouteRegister register=new RouteRegister(12);
+        register.expand();
+        register.writeData();
     }
 }

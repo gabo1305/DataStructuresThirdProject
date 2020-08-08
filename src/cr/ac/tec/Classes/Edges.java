@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class Edges {
     private static final int from=0;
     private static final int to=1;
-    private static final int size=2;
+    private static final int TheSize=2;
     private String id;
     private String source;
     private String target;
+    private double size=20;
+    private final String type= "arrow";
 
     public Edges(String id,String source,String target){
         this.id=id;
@@ -19,7 +21,7 @@ public class Edges {
     }
     public Edges(ArrayList<Nodes> nodes, String id){
         this.id=id;
-        if(nodes==null || nodes.size()!=size)return;
+        if(nodes==null || nodes.size()!=TheSize)return;
         source=nodes.get(from).getID();
         target=nodes.get(to).getID();
     }

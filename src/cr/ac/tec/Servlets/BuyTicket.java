@@ -21,7 +21,7 @@ public class BuyTicket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String Name=req.getParameter(UserName);
-        RequestManager requestManager=RequestManager.getInstance(random);
+        RequestManager requestManager=RequestManager.getInstance();
         String startStop=req.getParameter(Start);
         String endStop=req.getParameter(End);
         Ticket ticket= requestManager.BuyTicket(Name,startStop,endStop);
