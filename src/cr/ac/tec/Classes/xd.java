@@ -75,7 +75,7 @@ public class xd extends HttpServlet {
                 "    }\n" +
                 "  ]\n" +
                 "}";
-        PlainText.writeFile("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\web\\estaciones.json",text);
+        PlainText.writeFile("C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\web\\estaciones.json",text);
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

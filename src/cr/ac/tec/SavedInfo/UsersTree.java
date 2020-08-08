@@ -8,7 +8,7 @@ public class UsersTree extends InfoTree<User> {
     private static UsersTree instance;
     private UsersTree(){
         Tree=new BinaryTree<>();
-        this.route="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Users.json";
+        this.route="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\Users.json";
         getData();
     }
     public static UsersTree getInstance(){
