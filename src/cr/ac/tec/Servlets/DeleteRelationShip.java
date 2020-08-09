@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/DeleteRelationShips")
+@WebServlet(value = "/deleteRoute")
 public class DeleteRelationShip extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -17,6 +17,7 @@ public class DeleteRelationShip extends HttpServlet {
         String end=req.getParameter("Paradas");
         RequestManager requestManager=RequestManager.getInstance();
         requestManager.deleteRelationShip(start,end);
+        resp.getWriter().println("sirviooooooo");
     }
 
     @Override

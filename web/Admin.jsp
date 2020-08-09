@@ -77,7 +77,7 @@
 
 <h2>Eliminar ruta</h2>
 
-<form>
+<form action="/deleteRoute">
     <h4>Estacion</h4>
     <select id="dropdownEstaciones" onchange="paradasDisponibles()" name="Estaciones" required>
     </select>
@@ -85,6 +85,7 @@
     <h4>Paradas</h4>
     <select id="dropdownParadas" name="Paradas" required>
     </select><br><br>
+
 
     <input type="submit" value="Eliminar ruta">
 </form>
