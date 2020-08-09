@@ -1,6 +1,7 @@
 package cr.ac.tec.Rail;
 
 
+import cr.ac.tec.DataStructures.ArrayList.ArrayTools;
 import cr.ac.tec.FileProccessing.JsonExchange;
 
 import java.util.ArrayList;
@@ -37,12 +38,7 @@ public class RouteRegister {
         return RoutesRegister.get(a).get(b);
     }
     public void AddData(int data,int a, int b){
-        System.out.println("_______________________________________________________________");
-        System.out.println("data: "+data);
-        System.out.println("a: "+a);
-        System.out.println("b: "+a);
         if(!verification(a,b))return;
-        System.out.println("Adding "+data);
         RoutesRegister.get(a).get(b).add(data);
         writeData();
     }
@@ -102,14 +98,59 @@ public class RouteRegister {
         if(data<0 || data>=RoutesRegister.size())return false;
         return true;
     }
+    public ArrayList<Integer> getFromNode(int pos){
+        if(!verification(pos))return null;
+        ArrayList<Integer> List=new ArrayList<>();
+        getFrom(List,pos);
+        getTo(List,pos);
+        return List;
+    }
+    private void getFrom(ArrayList<Integer> List,int pos){
+        if(List==null)return;
+        ArrayList<ArrayList<Integer>> source=RoutesRegister.get(pos);
+        ArrayList<Integer> temp;
+        for(int i=0;i<source.size();i++){
+            temp=source.get(i);
+            for(int j=0;j<temp.size();j++){
+                System.out.println(temp.get(j));
+                if(!List.contains(temp.get(j))) List.add(temp.get(j));
+            }
+        }
+    }
+    private void getTo(ArrayList<Integer> List,int pos){
+        if(List==null)return;
+        if(!verification(pos))return;
+        ArrayList<Integer> temp;
+        for(int i=0;i<RoutesRegister.size();i++){
+            temp=RoutesRegister.get(i).get(pos);
+            for(int j=0;j<temp.size();j++){
+                if(!List.contains(temp.get(j)))List.add(temp.get(j));
+            }
+        }
+    }
 
     public void getData(){
-        ArrayList<ArrayList<ArrayList<Integer >>> theList= new ArrayList<>();
-        theList=(ArrayList<ArrayList<ArrayList<Integer>>>)JsonExchange.getObjectFromJson(route,theList.getClass());
+        ArrayList<ArrayList<ArrayList<Integer >>> theList= new ArrayList<ArrayList<ArrayList<Integer>>>();
+        //theList=(ArrayList<ArrayList<ArrayList<Integer>>>)JsonExchange.getObjectFromJson(route,theList.getClass());
+        int[][][] Data=(int[][][]) JsonExchange.getObjectFromJson(route,int[][][].class);
+        appendArray(theList,Data);
         if(theList!=null)this.RoutesRegister=theList;
     }
     public void writeData(){
         JsonExchange.toJsonFromObject(route,this.RoutesRegister);
+    }
+    private void appendArray(ArrayList<ArrayList<ArrayList<Integer>>>List ,int[][][] array){
+        if(array==null)return;
+        if(List==null)return;
+        for(int i=0;i<array.length;i++){
+            List.add(new ArrayList<>());
+            for(int j=0;j<array[i].length;j++){
+                List.get(i).add(new ArrayList<>());
+                for(int k=0;k<array[i][j].length;k++){
+                    List.get(i).get(j).add(array[i][j][k]);
+                }
+            }
+        }
     }
 
 }
