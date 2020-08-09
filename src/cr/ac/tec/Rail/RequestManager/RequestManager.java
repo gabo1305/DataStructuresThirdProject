@@ -125,6 +125,11 @@ public class RequestManager {
         }
         return tickets;
     }
+    public Ticket Ticket(String ID){
+        Ticket ticket=new Ticket(null);
+        ticket.setID(Integer.parseInt(ID));
+        return ticketsTree.getMember(ticket);
+    }
     public double getPrice(String Name1,String Name2){
         Nodes node1=graph.getNode(Name1);
         Nodes node2=graph.getNode(Name2);
