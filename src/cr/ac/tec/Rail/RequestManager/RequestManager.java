@@ -125,6 +125,11 @@ public class RequestManager {
         }
         return tickets;
     }
+    public double getPrice(String Name1,String Name2){
+        Nodes node1=graph.getNode(Name1);
+        Nodes node2=graph.getNode(Name2);
+        return graph.getPrice(node1,node2);
+    }
     public void updateGraphFileRep(){
         graph.updateGraphReference();
     }
