@@ -1,15 +1,15 @@
 package cr.ac.tec.Rail.RequestManager;
-
-
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.Rail.Accounts.User;
 import cr.ac.tec.Rail.Purchase.Ticket;
 import cr.ac.tec.Rail.RailGraph;
 import cr.ac.tec.Rail.Roads.Nodes;
 import cr.ac.tec.Rail.RouteRegister;
-import cr.ac.tec.Rail.TakenRoad;
 import cr.ac.tec.SavedInfo.TicketsTree;
 import cr.ac.tec.SavedInfo.UsersTree;
+
+import java.util.ArrayList;
+
 
 public class RequestManager {
     private static RequestManager instance;
@@ -98,6 +98,32 @@ public class RequestManager {
         graph.DeleteRelationShip(node1,node2);
         updateGraphFileRep();
         return true;
+    }
+    public ArrayList<Ticket> getTicketsByUser(String UserName){
+        User user=usersTree.getMember(new User(UserName));
+        if(user==null)return null;
+        ArrayList<Integer> ID=user.getWallet().getTickets();
+        return getTicketsFromID(ID);
+
+    }
+    public ArrayList<Ticket> getTicketByNode(int position){
+       if(position<0 || position>graph.getLen())return null;
+        ArrayList<Integer> ID=register.getFromNode(position);
+        return getTicketsFromID(ID);
+    }
+
+
+    public ArrayList<Ticket> getTicketsFromID(ArrayList<Integer> ID){
+        if(ID==null)return null;
+        ArrayList<Ticket> tickets=new ArrayList<>();
+        Ticket reference;
+        for(int i=0;i<ID.size();i++){
+            reference=new Ticket(null);
+            reference.setID(ID.get(i));
+            reference=ticketsTree.getMember(reference);
+            if(reference!=null)tickets.add(reference);
+        }
+        return tickets;
     }
     public void updateGraphFileRep(){
         graph.updateGraphReference();
