@@ -63,25 +63,18 @@
         document.getElementById('dropdownParadas').innerHTML = paradasOption;
     }
 
-    function reservacionesUsuario() {
-        obj = JSON.parse(usersText);
-        var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th><th>Id de tiquetes</th></tr>"
-
-        for (var i=0; i<obj.length; i++){
-            tableRow += "<tr><td>"+obj[i].ID+"</td><td>"+obj[i].wallet.tickets.length+"</td><td>"+obj[i].wallet.tickets+"</td></tr>";
-        }
-        document.getElementById('userTable').innerHTML += tableRow;
-    }
-    
     function reservaciones(tipoDeReservacion) {
         if (tipoDeReservacion==='Usuario'){
             obj = JSON.parse(usersText);
             var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th><th>Id de tiquetes</th></tr>"
 
             for (var i=0; i<obj.length; i++){
-                tableRow += "<tr><td>"+obj[i].ID+"</td><td>"+obj[i].wallet.tickets.length+"</td><td>"+obj[i].wallet.tickets+"</td></tr>";
+                tableRow += "<tr><td>"+obj[i].ID+"</td><td>"+obj[i].wallet.tickets.length+"</td><td><a href='www.facebook.com'>"+obj[i].wallet.tickets+"<a></td></tr>";
             }
             document.getElementById('userTable').innerHTML += tableRow;
+        }
+        if (tipoDeReservacion==='Ruta'){
+
         }
     }
 
@@ -135,8 +128,8 @@
 <form>
     <h4>Forma de visualizar reservaciones</h4>
     <input type="button" onclick="reservaciones('Usuario')" value="Usuarios">
-    <input type="button" onclick="reservacionesFecha()" value="Fecha">
-    <input type="button" onclick="reservacionesRuta()" value="Ruta">
+    <input type="button" onclick="reservaciones('Fecha')" value="Fecha">
+    <input type="button" onclick="reservaciones('Ruta')" value="Ruta">
 </form>
 
 
