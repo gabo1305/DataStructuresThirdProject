@@ -1,26 +1,41 @@
 <html>
 
 <title>Admin</title>
+
+<head>
+    <link rel="stylesheet" href="tableStyle.css">
+</head>
+
 <script src="noBack.js"></script>
 
 <script>
     const url='http://localhost:9080/cual';
     const Http= new XMLHttpRequest();
+    const Http2= new XMLHttpRequest();
     const HttpMethod="GET";
     var text;
+    var usersText;
 
     function getText() {
         Http.open(HttpMethod, url);
         Http.send();
         Http.onreadystatechange = (e) => {
-            console.log(Http.responseText)
             text = Http.responseText;
             estaciones()
         };
     }
 
+    function getUsers() {
+        Http2.open("GET",'http://localhost:9080/usersXd')
+        Http2.send();
+        Http2.onreadystatechange = (e) =>{
+            usersText = Http2.responseText;
+        }
+    }
+
     function all() {
         getText()
+        getUsers()
     }
 
     function estaciones() {
@@ -46,8 +61,31 @@
             }
         }
         document.getElementById('dropdownParadas').innerHTML = paradasOption;
-
     }
+
+    function reservacionesUsuario() {
+        obj = JSON.parse(usersText);
+        var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th><th>Id de tiquetes</th></tr>"
+
+        for (var i=0; i<obj.length; i++){
+            tableRow += "<tr><td>"+obj[i].ID+"</td><td>"+obj[i].wallet.tickets.length+"</td><td>"+obj[i].wallet.tickets+"</td></tr>";
+        }
+        document.getElementById('userTable').innerHTML += tableRow;
+    }
+    
+    function reservaciones(tipoDeReservacion) {
+        if (tipoDeReservacion==='Usuario'){
+            obj = JSON.parse(usersText);
+            var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th><th>Id de tiquetes</th></tr>"
+
+            for (var i=0; i<obj.length; i++){
+                tableRow += "<tr><td>"+obj[i].ID+"</td><td>"+obj[i].wallet.tickets.length+"</td><td>"+obj[i].wallet.tickets+"</td></tr>";
+            }
+            document.getElementById('userTable').innerHTML += tableRow;
+        }
+    }
+
+
 </script>
 
 <body onload="all()">
@@ -93,6 +131,18 @@
 <br><br>
 
 <h2>Reservaciones</h2>
+
+<form>
+    <h4>Forma de visualizar reservaciones</h4>
+    <input type="button" onclick="reservaciones('Usuario')" value="Usuarios">
+    <input type="button" onclick="reservacionesFecha()" value="Fecha">
+    <input type="button" onclick="reservacionesRuta()" value="Ruta">
+</form>
+
+
+<table id="userTable">
+</table>
+
 
 
 </body>
