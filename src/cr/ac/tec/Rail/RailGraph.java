@@ -108,5 +108,9 @@ public class RailGraph {
         }
         return null;
     }
+    public double getPrice(Nodes node1,Nodes node2){
+        if(node1==null || node2==null)return NullState;
+        return dijkstra.getPrice(node1,node2);
+    }
 
 }
