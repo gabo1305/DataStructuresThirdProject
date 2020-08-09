@@ -48,15 +48,11 @@
         document.getElementById('dropdownParadas').innerHTML = paradasOption;
 
     }
-
-
-
-
 </script>
 
 <body onload="all()">
 
-<br>
+<h1>Admin Page</h1>
 
 <h2>Agregar ruta</h2>
 
@@ -92,6 +88,10 @@
 
     <input type="submit" value="Eliminar ruta">
 </form>
+
+<br><br>
+
+<h2>Reservaciones</h2>
 
 
 </body>
