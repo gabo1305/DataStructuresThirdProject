@@ -14,7 +14,6 @@ import java.io.IOException;
 public class UsersXd extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //resp.setContentType("application/json");
         RequestManager.getInstance().updateGraphFileRep();
         resp.getWriter().print(PlainText.readFile("C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Users.json"));
     }

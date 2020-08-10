@@ -66,10 +66,10 @@
     function reservaciones(tipoDeReservacion) {
         if (tipoDeReservacion==='Usuario'){
             obj = JSON.parse(usersText);
-            var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th><th>Id de tiquetes</th></tr>"
+            var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th></tr>"
 
             for (var i=0; i<obj.length; i++){
-                tableRow += "<tr><td>"+obj[i].ID+"</td><td>"+obj[i].wallet.tickets.length+"</td><td><a href='www.facebook.com'>"+obj[i].wallet.tickets+"<a></td></tr>";
+                tableRow += "<tr><td><a href='UserTicket.jsp'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
             }
             document.getElementById('userTable').innerHTML += tableRow;
         }
