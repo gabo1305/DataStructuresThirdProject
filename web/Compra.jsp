@@ -5,7 +5,7 @@
 <script>
 
     const url='http://localhost:9080/cual';
-    const url='http://localhost:9080/getPrice';
+
     const Http= new XMLHttpRequest();
     const HttpMethod="GET";
     var text;
@@ -48,27 +48,27 @@
 
 <h2>Add your route to shopping cart </h2>
 
-<form  action="ConfirmarCompra.jsp" method="post">
+<form  action="/getPrice" method="post">
     Select a starting point <br>
-    <select id = "dropdownEstacionInicial" name="Initial" required>
+    <select id = "dropdownEstacionInicial" name="Start" required>
     </select><br><br>
 
 
     Select a finishing point <br>
-    <select id = "dropdownEstacionFinal" name="Final" required>
+    <select id = "dropdownEstacionFinal" name="End" required>
     </select><br><br>
 
     <input type="number" name="Amount" required>
 
     <input type="submit" value="go to shopping cart">
+    <input type="submit" value="Consult price equisde" >
 
 </form>
 
-<form>
+<form action="/getPrice">
+    <input type="submit" value="Consult price ">
+</form >
 
-
-</form>
-   <input type="submit" value="Consult price ">
 <form >
     <input type="submit" value="Add to shopping cart ">
 </form>
