@@ -53,6 +53,15 @@ public class RequestManager {
         return ticket;
 
     }
+    public ArrayList<Ticket> getTicket(String name,String start,String end,int TicketsNumber){
+        ArrayList<Ticket> List=new ArrayList<>();
+        Ticket ref;
+        for(int i=0;i<TicketsNumber;i++){
+            ref=BuyTicket(name,start,end);
+            if(ref!=null)List.add(ref);
+        }
+        return List;
+    }
     public User getUser(User user){
         User returning =usersTree.getMember(user);
         if(returning==null){
@@ -71,8 +80,8 @@ public class RequestManager {
             register.AddData(id,a,b);
         }
     }
-    public void addNode(String Name){
-        graph.addStopping(Name);
+    public void addNode(String Name,String XPos,String YPos){
+        graph.addStopping(Name,Double.parseDouble(XPos),Double.parseDouble(YPos));
         register.expand();
         updateGraphFileRep();
     }

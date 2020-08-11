@@ -17,13 +17,14 @@ public class RailGraph {
     private static final int to=1;
     private static int StoppingID;
     private final int NullState=Integer.MAX_VALUE;
-    private final String NodesRoute="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Nodes.json";
-    private final String RelationRoute="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\RelationNodes.json";
-    private final String graphReferenceRelationShip="C:\\Users\\migue\\DataStructuresThirdProyect\\web\\estaciones.json";
+    private final String NodesRoute="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json";
+    private final String RelationRoute="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json";
+    private final String graphReferenceRelationShip="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\web\\estaciones.json";
     private Dijkstra<Nodes> dijkstra;
     private Graph<Nodes> graph;
     private DoubleList<Nodes> nodes;
     private static RailGraph instance;
+    private static double size=5;
     private RailGraph(){
         graph=new Graph(getNodes());
         graph.setRelationShip(getRoads());
@@ -32,6 +33,7 @@ public class RailGraph {
         nodes=graph.getNodes();
         updateGraphReference();
         StoppingID=graph.NodesNumber();
+       if (!nodes.isEmpty())size=nodes.get(0).getSize();
     }
     public static RailGraph getInstance(){
         if(instance==null){
@@ -73,8 +75,11 @@ public class RailGraph {
     public DoubleList<Nodes> getShortestRoad(Nodes init, Nodes End){
         return dijkstra.getShortestRoute(init, End);
     }
-    public void addStopping(String Name){
+    public void addStopping(String Name,double XPos,double YPos){
         Nodes nodes =new Nodes(StoppingID,Name);
+        nodes.setX(XPos);
+        nodes.setY(YPos);
+        nodes.setSize(size);
         graph.AddNode(nodes);
         StoppingID++;
         writeData();
@@ -111,6 +116,10 @@ public class RailGraph {
     public double getPrice(Nodes node1,Nodes node2){
         if(node1==null || node2==null)return NullState;
         return dijkstra.getPrice(node1,node2);
+    }
+    public static void setSize(double data){
+        if(data<=0)return;
+        if(size==0)size=data;
     }
 
 }

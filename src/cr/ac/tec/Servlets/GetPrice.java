@@ -15,6 +15,8 @@ public class GetPrice extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String Start=req.getParameter("Start");
         String End=req.getParameter("End");
+        String Amount=req.getParameter("Amount");
+        System.out.println(Amount);
         RequestManager requestManager=RequestManager.getInstance();
         double price=requestManager.getPrice(Start,End);
         resp.getWriter().print(price);
