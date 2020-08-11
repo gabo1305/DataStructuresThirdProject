@@ -60,11 +60,22 @@
             estacionOption += "<option value='"+obj.nodes[i].id+"'>"+obj.nodes[i].label+"</option>"
         }
         document.getElementById('dropdownEstacionInicial').innerHTML = estacionOption;
-        document.getElementById('dropdownEstacionFinal').innerHTML = estacionOption;
+
 
 
     }
+    function paradasDisponibles() {
+        obj = JSON.parse(text);
+        var estacionId = document.getElementById("dropdownEstacionInicial");
+        var paradasOption = "<option name=''> select</option>"
 
+        for (var i=0; i<obj.edges.length; i++){
+            if (obj.edges[i].source === estacionId.value){
+                paradasOption += "<option value='"+obj.nodes[obj.edges[i].target].id+"'>"+obj.nodes[obj.edges[i].target].label+"</option>"
+            }
+        }
+        document.getElementById('dropdownEstacionFinal').innerHTML = paradasOption;
+    }
 
 
 </script>
@@ -81,24 +92,25 @@
     <br>
 
     Select a starting point <br>
-    <select id = "dropdownEstacionInicial" name="Start" required>
+    <select id = "dropdownEstacionInicial"  onchange="paradasDisponibles()" name="Start" required>
     </select><br><br>
 
 
     Select a finishing point <br>
 
 
-    <select id = "dropdownEstacionFinal" name="End" required>
+    <select id = "dropdownEstacionFinal"  name="End" required>
 
     </select><br><br>
 
     select how many tickets you want <br>
-    <input type="number"  id="AmountId" name="Amount" required>
+    <input type="number"  id="AmountId" name="Amount" required
+    min="1" max="100">
     <br>
 
     select the date of use of your ticket<br>
 
-    <input type="date" id="fecha" required 
+    <input type="date" id="fecha" required
     min="2020-08-13" max="2021-01-01">
     <br>
 
