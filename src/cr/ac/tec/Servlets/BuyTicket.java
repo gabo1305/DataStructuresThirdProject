@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,20 +23,29 @@ public class BuyTicket extends HttpServlet {
     private static final String Start="Start";
     private static final String End="End";
     private static final String Amount="Amount";
+    private static final String date="Date";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String Name=req.getParameter(UserName);
-        RequestManager requestManager=RequestManager.getInstance();
-        String startStop=req.getParameter(Start);
-        String endStop=req.getParameter(End);
-        System.out.println("Name "+Name);
-        System.out.println("Start "+startStop);
-        System.out.println("End "+endStop);
-        int amount=Integer.parseInt(req.getParameter(Amount));
-        ArrayList<Ticket> ArrayListTicket= requestManager.getTicket(Name,startStop,endStop,amount);
-        PrintWriter printWriter=resp.getWriter();
-        if(ArrayListTicket==null)printWriter.print("null");
-        else printWriter.print(JsonExchange.getStringFromObject(ArrayListTicket));
+        try {
+
+
+            String Name = req.getParameter(UserName);
+            RequestManager requestManager = RequestManager.getInstance();
+            String startStop = req.getParameter(Start);
+            String endStop = req.getParameter(End);
+            String date1 = req.getParameter(date);
+            Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date1);
+            System.out.println("La fecha es "+date2);
+            System.out.println("Name " + Name);
+            System.out.println("Start " + startStop);
+            System.out.println("End " + endStop);
+            int amount = Integer.parseInt(req.getParameter(Amount));
+            ArrayList<Ticket> ArrayListTicket = requestManager.getTicket(Name, startStop, endStop, amount,date2);
+            PrintWriter printWriter = resp.getWriter();
+            if (ArrayListTicket == null) printWriter.print("null");
+            else printWriter.print(JsonExchange.getStringFromObject(ArrayListTicket));
+        }
+        catch (Exception e){}
     }
 
     @Override

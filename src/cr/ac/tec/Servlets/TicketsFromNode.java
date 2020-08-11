@@ -21,6 +21,7 @@ public class TicketsFromNode extends HttpServlet {
         RequestManager requestManager=RequestManager.getInstance();
         ArrayList<Ticket> List=requestManager.getTicketByNode(id);
         String re=JsonExchange.getStringFromObject(List);
+        System.out.println(re);
         resp.getWriter().print(re);
     }
 

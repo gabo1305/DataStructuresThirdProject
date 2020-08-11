@@ -8,7 +8,10 @@ import cr.ac.tec.Rail.RouteRegister;
 import cr.ac.tec.SavedInfo.TicketsTree;
 import cr.ac.tec.SavedInfo.UsersTree;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class RequestManager {
@@ -38,7 +41,7 @@ public class RequestManager {
         User user=new User(id);
         usersTree.attach(user);
     }
-    public Ticket BuyTicket(String name, String start, String end){
+    public Ticket BuyTicket(String name, String start, String end, Date date){
         User user=new User(name);
         User myUser=getUser(user);
         Nodes startPoint=graph.getNode(start);
@@ -48,17 +51,21 @@ public class RequestManager {
         if(route==null || route.isEmpty())return null;
         Ticket ticket=ticketsTree.createTicket(user,route);
         ticket.setPrice(graph.getPrice(startPoint,endPoint));
+        if(date!=null)ticket.setDate(date);
+        ticketsTree.updateFile();
        markTakenRoute(route,ticket.getID());
         myUser.addTicket(ticket);
         usersTree.updateFile();
-        return ticket;
+        Ticket another=ticketFromAnother(ticket);
+        getLabel(another);
+        return another;
 
     }
-    public ArrayList<Ticket> getTicket(String name,String start,String end,int TicketsNumber){
+    public ArrayList<Ticket> getTicket(String name,String start,String end,int TicketsNumber,Date date){
         ArrayList<Ticket> List=new ArrayList<>();
         Ticket ref;
         for(int i=0;i<TicketsNumber;i++){
-            ref=BuyTicket(name,start,end);
+            ref=BuyTicket(name,start,end,date);
             if(ref!=null)List.add(ref);
         }
         return List;
@@ -78,8 +85,6 @@ public class RequestManager {
         for(int i=0;i<List.getLength()-1;i++){
             a=graph.getPosition(List.get(i));
             b=graph.getPosition(List.get(i+1));
-            System.out.println("a is "+a);
-            System.out.println("b is "+b);
             register.AddData(id,a,b);
         }
     }
@@ -135,7 +140,43 @@ public class RequestManager {
             reference=ticketsTree.getMember(reference);
             if(reference!=null)tickets.add(reference);
         }
-        return tickets;
+
+        return translateTicket(tickets);
+    }
+    public ArrayList<Ticket> getTicketsFromDate(String Date){
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(Date);
+            DoubleList<Ticket> Tickets=ticketsTree.getTickets();
+            Calendar calendar=Calendar.getInstance();
+            calendar.setTime(date);
+            return findDate(calendar,Tickets);
+        }
+        catch (Exception e){}
+            return null;
+    }
+    private ArrayList<Ticket> findDate(Calendar calendar,DoubleList<Ticket> List){
+        if(calendar==null)return null;
+        if(List==null)return null;
+        ArrayList<Ticket> returning=new ArrayList<>();
+        Calendar ref=Calendar.getInstance();
+        for(int i=0;i<List.getLength();i++){
+            ref.setTime(List.get(i).getDate());
+            if( calendar.get(Calendar.DAY_OF_YEAR) == ref.get(Calendar.DAY_OF_YEAR) && calendar.get(Calendar.YEAR) == ref.get(Calendar.YEAR)){
+                returning.add(List.get(i));
+            }
+        }
+        return translateTicket(returning);
+    }
+    public ArrayList<Ticket> translateTicket(ArrayList<Ticket> tickets){
+        if(tickets==null)return null;
+        Ticket ref;
+        ArrayList<Ticket> List=new ArrayList<>();
+        for(int i=0;i<tickets.size();i++){
+            ref=ticketFromAnother(tickets.get(i));
+            getLabel(ref);
+            List.add(ref);
+        }
+        return List;
     }
     public Ticket Ticket(String ID){
         Ticket ticket=new Ticket(null);
@@ -147,6 +188,27 @@ public class RequestManager {
         Nodes node2=graph.getNode(Name2);
         return graph.getPrice(node1,node2);
     }
+    public Ticket ticketFromAnother(Ticket ticket){
+        if(ticket==null)return null;
+        Ticket newTicket=new Ticket();
+        newTicket.setDate(ticket.getDate());
+        newTicket.setID(ticket.getID());
+        newTicket.setPrice(ticket.getPrice());
+        newTicket.setUserID(ticket.getUserID());
+        newTicket.setTrajectory(ticket.getTrajectory());
+        return newTicket;
+    }
+    public void getLabel(Ticket ticket){
+        if(ticket==null)return;
+        String[] route=ticket.getTrajectory();
+        ArrayList<String> List=new ArrayList<>();
+        for(int i=0;i<route.length;i++){
+            List.add(graph.getNode(route[i]).getName());
+        }
+        ticket.setTrajectory(List);
+
+    }
+
     public void updateGraphFileRep(){
         graph.updateGraphReference();
     }

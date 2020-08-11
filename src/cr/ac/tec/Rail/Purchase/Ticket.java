@@ -3,6 +3,7 @@ package cr.ac.tec.Rail.Purchase;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.Rail.Roads.Nodes;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Ticket implements Comparable{
@@ -41,6 +42,7 @@ public class Ticket implements Comparable{
         setTrajectory(doubleList);
 
     }
+    public Ticket(){}
     public void setTrajectory(DoubleList<Nodes> List){
         if(List==null)return;
         this.trajectory=new String[List.getLength()];
@@ -76,6 +78,17 @@ public class Ticket implements Comparable{
     public void setUserID(String userID) {
         UserID = userID;
     }
+    public void setTrajectory(ArrayList<String> Trajectory){
+        if(trajectory==null)return;
+        this.trajectory=new String[Trajectory.size()];
+        for(int i=0;i<Trajectory.size();i++){
+            trajectory[i]=Trajectory.get(i);
+        }
+    }
+    public void setTrajectory(String[] trajectory){
+        this.trajectory=trajectory;
+    }
+
 
     @Override
     public int compareTo(Object o) {

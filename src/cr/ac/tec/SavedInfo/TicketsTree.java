@@ -41,4 +41,7 @@ public class TicketsTree extends InfoTree<Ticket> {
         IDCounter++;
         return ticket;
     }
+    public DoubleList<Ticket> getTickets(){
+        return Tree.getListInOrder();
+    }
 }
