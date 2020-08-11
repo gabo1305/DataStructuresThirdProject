@@ -13,6 +13,7 @@
     const Http= new XMLHttpRequest();
     const Http2= new XMLHttpRequest();
     const HttpMethod="GET";
+    var yaEsta=false;
     var text;
     var usersText;
 
@@ -43,13 +44,16 @@
     function estaciones() {
         obj = JSON.parse(text);
         var estacionOption = "<option name=''> select</option>"
+        var estacionOptionReservacion = "<option name=''> Ruta</option>"
 
         for (var i = 0; i<obj.nodes.length;i++){
             estacionOption += "<option value='"+obj.nodes[i].id+"'>"+obj.nodes[i].label+"</option>"
+            estacionOptionReservacion += "<option value='"+obj.nodes[i].id+"'>"+obj.nodes[i].label+"</option>"
         }
         document.getElementById('dropdownEstacionInicial').innerHTML = estacionOption;
         document.getElementById('dropdownEstacionFinal').innerHTML = estacionOption;
         document.getElementById('dropdownEstaciones').innerHTML = estacionOption;
+        document.getElementById('dropdownReservaciones').innerHTML = estacionOptionReservacion;
     }
     
     function paradasDisponibles() {
@@ -66,19 +70,28 @@
     }
 
     function reservaciones(tipoDeReservacion) {
-        if (tipoDeReservacion==='Usuario'){
+        if (tipoDeReservacion==='Usuario' && !yaEsta){
             obj = JSON.parse(usersText);
             var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th></tr>"
 
             for (var i=0; i<obj.length; i++){
-                tableRow += "<tr><td><a href='userTicket?UserName="+obj[i].ID+"'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
+                tableRow += "<tr><td><a href='UserTicketUsuario.jsp?UserName="+obj[i].ID+"'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
             }
             document.getElementById('userTable').innerHTML += tableRow;
+            yaEsta=true;
         }
         if (tipoDeReservacion==='Ruta'){
 
         }
     }
+
+    function porRuta() {
+        var e = document.getElementById("dropdownReservaciones");
+        var strUser = e.options[e.selectedIndex].value;
+        console.log("Esto es el dropdown: " +strUser)
+        window.location.href="http://localhost:9080/UserTicketRuta.jsp?Node="+strUser;
+    }
+
 
 
 </script>
@@ -131,7 +144,9 @@
     <h4>Forma de visualizar reservaciones</h4>
     <input type="button" onclick="reservaciones('Usuario')" value="Usuarios">
     <input type="button" onclick="reservaciones('Fecha')" value="Fecha">
-    <input type="button" onclick="reservaciones('Ruta')" value="Ruta">
+
+    <select id="dropdownReservaciones" onchange="porRuta()" name="Tickets">
+    </select>
 </form>
 
 

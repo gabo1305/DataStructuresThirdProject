@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class RouteRegister {
     private ArrayList<ArrayList<ArrayList<Integer>>> RoutesRegister;
-    private final String route="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\ReservationRegister.json";
+    private final String route="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\ReservationRegister.json";
     public RouteRegister(int data){
         ArrayList<ArrayList<ArrayList<Integer>>> List=new ArrayList<>();
         if(data<0)return;
