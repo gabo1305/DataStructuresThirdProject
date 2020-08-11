@@ -16,8 +16,8 @@ public class DeleteRelationShip extends HttpServlet {
         String start=req.getParameter("Estaciones");
         String end=req.getParameter("Paradas");
         RequestManager requestManager=RequestManager.getInstance();
-        requestManager.deleteRelationShip(start,end);
-        resp.getWriter().println("sirviooooooo");
+        if(!requestManager.deleteRelationShip(start,end))resp.getWriter().print("Habia tickets comprados");
+        else resp.getWriter().println("sirviooooooo");
     }
 
     @Override
