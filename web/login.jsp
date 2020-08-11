@@ -7,15 +7,20 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<script src="noBack.js"></script>
+<script>
+function sendName() {
+    sessionStorage.setItem("UserBuy",document.getElementById("User").value)
+    window.location.href="http://localhost:9080/log?UserName="+document.getElementById("User").value;
+}
+</script>
+
+
 <head>
     <title>Login</title>
 </head>
 <body>
-<form action="log">
-    Enter username:<input type="text" name="UserName"><br>
-    <input type="submit" value="login">
-</form>
+    Enter username:<input type="text" name="UserName" id="User" ><br>
+    <input type="submit" value="login" onclick="sendName()">
 
 </body>
 </html>

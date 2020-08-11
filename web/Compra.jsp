@@ -24,8 +24,12 @@
         };
     }
 
+    var usuario;
     function all() {
         getText()
+        usuario=sessionStorage.getItem('UserBuy')
+        console.log("usuario")
+        document.getElementById("SavedUser").value=usuario;
 
     }
 
@@ -80,6 +84,7 @@
 
 </script>
 
+
 <body onload="all()">
 
 <h1>Buy Ticket</h1>
@@ -87,9 +92,12 @@
 <h2>Add your route to shopping cart </h2>
 
 <form  action="/buy">
+
     Enter username<br>
-    <input type="text" name="UserName">
+    <input type="text" name="UserName" id="SavedUser" hidden>
     <br>
+
+
 
     Select a starting point <br>
     <select id = "dropdownEstacionInicial"  onchange="paradasDisponibles()" name="Start" required>
