@@ -25,7 +25,10 @@ public class RouteRegister {
         }
     }
     public boolean check(int a, int b){
+        System.out.println(this.RoutesRegister.size());
+        System.out.println("llamado a verificacion");
         if(!verification(a,b))return false;
+        System.out.println("Print del check despues del false");
         return RoutesRegister.get(a).get(b).isEmpty();
     }
     public ArrayList<Integer> getIDs(int a, int b){
@@ -88,6 +91,8 @@ public class RouteRegister {
     }
     private boolean verification(int a,int b){
         if(!verification(b))return false;
+        System.out.println("esto es a: "+a);
+        System.out.println("esto es b: "+b);
         if(!verification(a))return false;
         return true;
     }

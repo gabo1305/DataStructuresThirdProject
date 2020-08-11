@@ -105,6 +105,9 @@ public class RequestManager {
     public boolean deleteRelationShip(String Name1, String Name2){
         Nodes node1=graph.getNode(Name1);
         Nodes node2=graph.getNode(Name2);
+        System.out.println("Esto es node1: "+node1);
+        System.out.println("Esto es node2: "+node2);
+
         if(node1==null || node2==null)return false;
         if(!register.check(graph.getPosition(node1),graph.getPosition(node2)))return false;
         graph.DeleteRelationShip(node1,node2);

@@ -66,7 +66,7 @@ public class Main {
                 if(matrix[i][j]!=1)matrix[i][j]=Integer.MAX_VALUE;
             }
         }
-        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
+        JsonExchange.toJsonFromObject("C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\RelationNodes.json",matrix);
         RequestManager requestManager = RequestManager.getInstance();
         requestManager.updateGraphFileRep();
         LinkedListTool<Nodes> tool=new LinkedListTool<>();
@@ -74,8 +74,8 @@ public class Main {
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
         boolean[][] taken=new boolean[13][13];
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\TakenRoad.json",taken);
-       RouteRegister register=new RouteRegister(14);
+       //RouteRegister register=new RouteRegister(14);
        // register.expand();
-       register.writeData();
+       //register.writeData();
     }
 }

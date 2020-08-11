@@ -13,7 +13,6 @@
     const Http= new XMLHttpRequest();
     const Http2= new XMLHttpRequest();
     const HttpMethod="GET";
-    var yaEsta=false;
     var text;
     var usersText;
 
@@ -53,6 +52,7 @@
         document.getElementById('dropdownEstacionInicial').innerHTML = estacionOption;
         document.getElementById('dropdownEstacionFinal').innerHTML = estacionOption;
         document.getElementById('dropdownEstaciones').innerHTML = estacionOption;
+        document.getElementById('dropdownEstacionEliminar').innerHTML = estacionOption;
         document.getElementById('dropdownReservaciones').innerHTML = estacionOptionReservacion;
     }
     
@@ -70,18 +70,14 @@
     }
 
     function reservaciones(tipoDeReservacion) {
-        if (tipoDeReservacion==='Usuario' && !yaEsta){
+        if (tipoDeReservacion==='Usuario'){
             obj = JSON.parse(usersText);
             var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th></tr>"
 
             for (var i=0; i<obj.length; i++){
                 tableRow += "<tr><td><a href='UserTicketUsuario.jsp?UserName="+obj[i].ID+"'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
             }
-            document.getElementById('userTable').innerHTML += tableRow;
-            yaEsta=true;
-        }
-        if (tipoDeReservacion==='Ruta'){
-
+            document.getElementById('userTable').innerHTML = tableRow;
         }
     }
 
@@ -92,6 +88,18 @@
         window.location.href="http://localhost:9080/UserTicketRuta.jsp?Node="+strUser;
     }
 
+    function printMieo() {
+        obj = JSON.parse(usersText);
+        var fecha = document.getElementById("fecha")
+        console.log(fecha.value)
+        var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th></tr>"
+
+        for (var i=0; i<obj.length; i++){
+            tableRow += "<tr><td><a href='UserTicketUsuario.jsp?UserName="+obj[i].ID+"'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
+        }
+        document.getElementById('userTable').innerHTML = tableRow;
+    }
+
 
 
 </script>
@@ -99,6 +107,44 @@
 <body onload="all()">
 
 <h1>Admin Page</h1>
+
+
+<h2>Agregar estacion</h2>
+
+<form>
+    Nombre de nueva estacion<br>
+    <input type="text" name="NewStation"><br><br>
+
+    Posicion en X de estacion<br>
+    <input type="number" name="PosX"><br><br>
+
+    Posicion en Y de estacion<br>
+    <input type="number" name="PosY"><br><br>
+
+    <input type="submit" value="Add new station">
+
+</form>
+
+<br><br>
+
+
+
+<h2>Eliminar estacion</h2>
+
+<form>
+
+    Estacion que desea eliminar<br>
+    <select id="dropdownEstacionEliminar" name="EstacionEliminar" required>
+    </select><br><br>
+
+    <input type="submit" value="Eliminar estacion">
+
+</form>
+
+
+<br><br>
+
+
 
 <h2>Agregar ruta</h2>
 
@@ -143,7 +189,7 @@
 <form>
     <h4>Forma de visualizar reservaciones</h4>
     <input type="button" onclick="reservaciones('Usuario')" value="Usuarios">
-    <input type="button" onclick="reservaciones('Fecha')" value="Fecha">
+    <input type="date" id="fecha" onchange="printMieo()" name="Date" required min="2020-08-13" max="2021-01-01">
 
     <select id="dropdownReservaciones" onchange="porRuta()" name="Tickets">
     </select>
