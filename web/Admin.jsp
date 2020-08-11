@@ -125,15 +125,15 @@
 
 <h2>Agregar estacion</h2>
 
-<form>
+<form action="/addStopping">
     Nombre de nueva estacion<br>
-    <input type="text" name="NewStation"><br><br>
+    <input type="text" name="StopName"><br><br>
 
     Posicion en X de estacion<br>
-    <input type="number" name="PosX"><br><br>
+    <input type="number" name="XAxis"><br><br>
 
     Posicion en Y de estacion<br>
-    <input type="number" name="PosY"><br><br>
+    <input type="number" name="YAxis"><br><br>
 
     <input type="submit" value="Add new station">
 
@@ -145,10 +145,10 @@
 
 <h2>Eliminar estacion</h2>
 
-<form>
+<form action="/deleteNode">
 
     Estacion que desea eliminar<br>
-    <select id="dropdownEstacionEliminar" name="EstacionEliminar" required>
+    <select id="dropdownEstacionEliminar" name="NodeID" required>
     </select><br><br>
 
     <input type="submit" value="Eliminar estacion">
