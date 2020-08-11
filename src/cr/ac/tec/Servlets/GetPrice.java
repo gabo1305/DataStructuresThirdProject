@@ -20,9 +20,10 @@ public class GetPrice extends HttpServlet {
         int ticketNumber=Integer.parseInt(Amount);
         RequestManager requestManager=RequestManager.getInstance();
         double price=requestManager.getPrice(Start,End);
+        double saved=price;
         price=ticketNumber*price;
         if(ticketNumber>45)ticketNumber=45;
-        double discount=price*0.02*(ticketNumber-1);
+        double discount=saved*0.02*(ticketNumber-1);
         price-=discount;
         resp.getWriter().print(price);
     }
