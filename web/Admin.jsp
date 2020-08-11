@@ -12,9 +12,12 @@
     const url='http://localhost:9080/cual';
     const Http= new XMLHttpRequest();
     const Http2= new XMLHttpRequest();
+    const Http3 = new XMLHttpRequest();
     const HttpMethod="GET";
+    var yaEsta = false;
     var text;
     var usersText;
+    var ticketFechaText;
 
     function getText() {
         Http.open(HttpMethod, url);
@@ -36,6 +39,7 @@
 
 
     function all() {
+        yaEsta=false;
         getText()
         getUsers()
     }
@@ -88,14 +92,24 @@
         window.location.href="http://localhost:9080/UserTicketRuta.jsp?Node="+strUser;
     }
 
-    function printMieo() {
-        obj = JSON.parse(usersText);
+    function getTicketFecha() {
         var fecha = document.getElementById("fecha")
-        console.log(fecha.value)
-        var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th></tr>"
+        console.log("esto es fecha: "+fecha.value)
+        Http3.open("GET",'http://localhost:9080/consultDate?Date='+fecha.value)
+        Http3.send();
+        Http3.onreadystatechange=(e)=>{
+            console.log("entro a onreadystage")
+            ticketFechaText = Http3.responseText;
+            console.log("Esto es ticket fecha: " + ticketFechaText)
+            obtenerFecha()
+        }
+    }
 
+    function obtenerFecha() {
+        obj = JSON.parse(ticketFechaText);
+        var tableRow = "<tr><th>Usuario</th><th>Trayectroia</th><th>Ticket Id</th><th>Precio</th></tr>"
         for (var i=0; i<obj.length; i++){
-            tableRow += "<tr><td><a href='UserTicketUsuario.jsp?UserName="+obj[i].ID+"'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
+            tableRow += "<tr><td>"+obj[i].UserID+"</td><td>"+obj[i].trajectory+"</td><td>"+obj[i].ID+"</td><td>"+obj[i].price+"</td></tr>";
         }
         document.getElementById('userTable').innerHTML = tableRow;
     }
@@ -189,7 +203,7 @@
 <form>
     <h4>Forma de visualizar reservaciones</h4>
     <input type="button" onclick="reservaciones('Usuario')" value="Usuarios">
-    <input type="date" id="fecha" onchange="printMieo()" name="Date" required min="2020-08-13" max="2021-01-01">
+    <input type="date" id="fecha" onchange="getTicketFecha()" name="Date" required min="2020-08-13" max="2021-01-01">
 
     <select id="dropdownReservaciones" onchange="porRuta()" name="Tickets">
     </select>
