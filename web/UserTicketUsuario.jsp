@@ -12,6 +12,7 @@
     const product = urlParams.get('UserName')
     const Http = new XMLHttpRequest();
     var ticketText;
+    var yaEsta=false;
     console.log(product);
 
     function all() {
@@ -22,8 +23,11 @@
         Http.open("GET",'http://localhost:9080/ConsultFromUser?UserName='+product);
         Http.send();
         Http.onreadystatechange = (e) => {
-            ticketText = Http.responseText;
-            tickets()
+            if (!yaEsta) {
+                ticketText = Http.responseText;
+                tickets()
+                yaEsta=true;
+            }
         };
 
     }
