@@ -1,10 +1,8 @@
 package cr.ac.tec.Rail;
 
 
-import cr.ac.tec.DataStructures.ArrayList.ArrayTools;
 import cr.ac.tec.FileProccessing.JsonExchange;
 
-import javax.json.Json;
 import java.util.ArrayList;
 
 public class RouteRegister {
