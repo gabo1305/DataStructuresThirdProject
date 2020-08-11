@@ -6,6 +6,9 @@ import cr.ac.tec.DataStructures.Graphs.Graph;
 import cr.ac.tec.DataStructures.Graphs.GraphsAlgorithm.Dijkstra;
 import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Main {
     private static String A="A";
     private static String B="B";
@@ -40,10 +43,9 @@ public class Main {
         Dijkstra<String> dijkstra=new Dijkstra<>();
         dijkstra.setGraph(graph);
         DoubleList<String> NList=dijkstra.getShortestRoute(E,D);
-        for(int i=0;i<NList.getLength();i++){
-            System.out.println(NList.get(i));
-        }
-        System.out.println(dijkstra.getPrice(E,D));
-        System.out.println(dijkstra.getPrice(F,G));
+        Calendar calendar=Calendar.getInstance();
+        Date date=new Date();
+        //date.
+       // System.out.println(date);
     }
 }

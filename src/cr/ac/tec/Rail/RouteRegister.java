@@ -4,6 +4,7 @@ package cr.ac.tec.Rail;
 import cr.ac.tec.DataStructures.ArrayList.ArrayTools;
 import cr.ac.tec.FileProccessing.JsonExchange;
 
+import javax.json.Json;
 import java.util.ArrayList;
 
 public class RouteRegister {
@@ -39,7 +40,9 @@ public class RouteRegister {
     }
     public void AddData(int data,int a, int b){
         if(!verification(a,b))return;
+        System.out.println("llegue al mundo del mago oscuro");
         RoutesRegister.get(a).get(b).add(data);
+        System.out.println(RoutesRegister.get(a).get(b).get(0));
         writeData();
     }
     public void deleteData(int data,int a, int b){
@@ -137,6 +140,10 @@ public class RouteRegister {
         if(theList!=null)this.RoutesRegister=theList;
     }
     public void writeData(){
+
+      //  System.out.println(JsonExchange.toJsonFromObject(route,this.RoutesRegister));
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println(JsonExchange.getStringFromObject(this.RoutesRegister));
         JsonExchange.toJsonFromObject(route,this.RoutesRegister);
     }
     private void appendArray(ArrayList<ArrayList<ArrayList<Integer>>>List ,int[][][] array){

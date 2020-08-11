@@ -47,6 +47,7 @@ public class RequestManager {
         DoubleList<Nodes> route=graph.getShortestRoad(startPoint,endPoint);
         if(route==null || route.isEmpty())return null;
         Ticket ticket=ticketsTree.createTicket(user,route);
+        ticket.setPrice(graph.getPrice(startPoint,endPoint));
        markTakenRoute(route,ticket.getID());
         myUser.addTicket(ticket);
         usersTree.updateFile();
@@ -77,6 +78,8 @@ public class RequestManager {
         for(int i=0;i<List.getLength()-1;i++){
             a=graph.getPosition(List.get(i));
             b=graph.getPosition(List.get(i+1));
+            System.out.println("a is "+a);
+            System.out.println("b is "+b);
             register.AddData(id,a,b);
         }
     }

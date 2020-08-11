@@ -10,6 +10,15 @@ public class Ticket implements Comparable{
     private String[] trajectory;
     private Date date;
     private String UserID;
+    private double price;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getID() {
         return ID;
