@@ -27,6 +27,9 @@ public class BuyTicket extends HttpServlet {
         RequestManager requestManager=RequestManager.getInstance();
         String startStop=req.getParameter(Start);
         String endStop=req.getParameter(End);
+        System.out.println("Name "+Name);
+        System.out.println("Start "+startStop);
+        System.out.println("End "+endStop);
         int amount=Integer.parseInt(req.getParameter(Amount));
         ArrayList<Ticket> ArrayListTicket= requestManager.getTicket(Name,startStop,endStop,amount);
         PrintWriter printWriter=resp.getWriter();
