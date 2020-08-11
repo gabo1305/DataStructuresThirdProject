@@ -1,10 +1,6 @@
 package cr.ac.tec.Rail;
-
-
 import cr.ac.tec.FileProccessing.JsonExchange;
-
 import java.util.ArrayList;
-
 public class RouteRegister {
     private ArrayList<ArrayList<ArrayList<Integer>>> RoutesRegister;
     private final String route="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\ReservationRegister.json";
