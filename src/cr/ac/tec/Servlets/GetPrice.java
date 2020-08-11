@@ -17,8 +17,13 @@ public class GetPrice extends HttpServlet {
         String End=req.getParameter("End");
         String Amount=req.getParameter("Amount");
         System.out.println(Amount);
+        int ticketNumber=Integer.parseInt(Amount);
         RequestManager requestManager=RequestManager.getInstance();
         double price=requestManager.getPrice(Start,End);
+        price=ticketNumber*price;
+        if(ticketNumber>45)ticketNumber=45;
+        double discount=price*0.02*(ticketNumber-1);
+        price-=discount;
         resp.getWriter().print(price);
     }
 

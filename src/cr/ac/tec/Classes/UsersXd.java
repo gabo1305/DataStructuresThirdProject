@@ -15,6 +15,6 @@ public class UsersXd extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestManager.getInstance().updateGraphFileRep();
-        resp.getWriter().print(PlainText.readFile("C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Users.json"));
+        resp.getWriter().print(PlainText.readFile("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Users.json"));
     }
 }

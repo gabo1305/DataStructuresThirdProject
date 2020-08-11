@@ -11,7 +11,7 @@ public class TicketsTree extends InfoTree<Ticket> {
     private static int IDCounter=0;
     private static TicketsTree instance;
     private TicketsTree(){
-        route="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Tickets.json";
+        route="C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Tickets.json";
         Tree=new BinaryTree<>();
         getData();
     }
