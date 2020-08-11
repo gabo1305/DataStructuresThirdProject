@@ -32,7 +32,7 @@ public class Main {
         List.AddTail(new Nodes(10,"Tres Rios"));
         List.AddTail(new Nodes(11,"Cartago"));
         List.AddTail(new Nodes(12,"Paraiso"));
-        double [][] matrix=new double[13][13];
+        double [][] matrix=new double[14][14];
         matrix[0][1]=1;
         matrix[1][0]=1;
         matrix[1][2]=1;
@@ -66,7 +66,7 @@ public class Main {
                 if(matrix[i][j]!=1)matrix[i][j]=Integer.MAX_VALUE;
             }
         }
-        //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
+        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
         RequestManager requestManager = RequestManager.getInstance();
         requestManager.updateGraphFileRep();
         LinkedListTool<Nodes> tool=new LinkedListTool<>();
@@ -74,8 +74,8 @@ public class Main {
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
         boolean[][] taken=new boolean[13][13];
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\TakenRoad.json",taken);
-        RouteRegister register=new RouteRegister(12);
-        register.expand();
-        register.writeData();
+       // RouteRegister register=new RouteRegister(14);
+       // register.expand();
+       // register.writeData();
     }
 }

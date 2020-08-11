@@ -9,8 +9,6 @@ async function xd(callback){
 
     Http.onreadystatechange = (e) => {
         console.log(Http.responseText)
-
-
         var graph =JSON.parse(Http.responseText);
         s.graph.read(graph);
         s.bind(event1, function (node) {
@@ -34,9 +32,6 @@ var s = new sigma(
             minArrowSize:8,
             minNodeSize: 20,
             arrowSizeRatio: 1
-
-
-
 
         }
     }
