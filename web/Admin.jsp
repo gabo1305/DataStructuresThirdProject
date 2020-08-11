@@ -33,6 +33,8 @@
         }
     }
 
+
+
     function all() {
         getText()
         getUsers()
@@ -69,7 +71,7 @@
             var tableRow = "<tr><th>Usuario</th><th>Cantidad de tiquetes</th></tr>"
 
             for (var i=0; i<obj.length; i++){
-                tableRow += "<tr><td><a href='UserTicket.jsp'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
+                tableRow += "<tr><td><a href='userTicket?UserName="+obj[i].ID+"'>"+obj[i].ID+"<a></td><td>"+obj[i].wallet.tickets.length+"</td></tr>";
             }
             document.getElementById('userTable').innerHTML += tableRow;
         }
