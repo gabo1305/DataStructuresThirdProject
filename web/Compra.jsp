@@ -110,7 +110,7 @@
 
     select the date of use of your ticket<br>
 
-    <input type="date" id="fecha" required
+    <input type="date" name="Date" required
     min="2020-08-13" max="2021-01-01">
     <br>
 
