@@ -17,6 +17,7 @@ public class UsersTree extends InfoTree<User> {
                 if(instance==null){
                     instance=new UsersTree();
                 }
+                System.out.println();
             }
         }
         return instance;
