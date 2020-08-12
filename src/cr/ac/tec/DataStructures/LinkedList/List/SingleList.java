@@ -106,7 +106,7 @@ public class SingleList<T> implements List<T>{
     }
 
     /**
-     *Checks whatever the list its empty or not
+     * Checks whatever the list its empty or not
      * @return true if its empty, false either
      */
     public boolean isEmpty(){

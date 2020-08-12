@@ -1,7 +1,15 @@
 package cr.ac.tec.DataStructures.LinkedList.Search;
 
+/**
+ *
+ * @param <T>
+ */
 public class BinarySearch<T extends Comparable> extends Searching<T> {
-
+    /**
+     *
+     * @param data
+     * @return
+     */
     @Override
     public boolean find(T data) {
         if(List==null || List.isEmpty())return false;
@@ -9,6 +17,14 @@ public class BinarySearch<T extends Comparable> extends Searching<T> {
         final int finish=List.getLength();
         return getting(data,init,finish);
     }
+
+    /**
+     *
+     * @param data
+     * @param init
+     * @param finish
+     * @return
+     */
     private boolean getting(T data, int init, int finish){
 
         if(finish-init==1)return data.compareTo(List.get(init))==0;

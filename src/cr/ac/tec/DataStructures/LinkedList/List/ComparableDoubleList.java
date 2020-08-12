@@ -2,6 +2,10 @@ package cr.ac.tec.DataStructures.LinkedList.List;
 
 import cr.ac.tec.DataStructures.LinkedList.Sorting.Sorting;
 
+/**
+ *
+ * @param <T>
+ */
 public class ComparableDoubleList<T extends Comparable> extends DoubleList<T> {
     private Sorting sortingMethod;
 

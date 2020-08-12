@@ -5,7 +5,11 @@ import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 import cr.ac.tec.DataStructures.LinkedList.List.List;
 import cr.ac.tec.DataStructures.Stack.Stack;
 
-
+/**
+ * Class of the dijkstra algorithm
+ * @author Andrey Zuñiga
+ * @param <T>
+ */
 public class Dijkstra<T> {
     private Graph<T> graph;
     private double[] values;
@@ -14,6 +18,11 @@ public class Dijkstra<T> {
     public void setGraph(Graph<T> graph){
         this.graph=graph;
     }
+
+    /**
+     * method to obtain the routes
+     * @param node
+     */
     public void getRoutes(T node){
         if(graph==null)return;
         if(node.equals(Starting))return;
@@ -34,18 +43,22 @@ public class Dijkstra<T> {
         this.values=value;
         this.predecessor=predecessor;
     }
+
+
     private void initiateValues(double[] values){
         if(values==null)return;
         for(int i=0;i<values.length;i++){
             values[i]=Integer.MAX_VALUE;
         }
     }
+
+
     private void initiatePredecessor(int[] predecessor){
         if(predecessor==null)return;
         for(int i=0;i<predecessor.length;i++){
             predecessor[i]=Integer.MAX_VALUE;
         }
-    }
+    }//
     private void analyze(int node,double[] values,double[] relationShips,int[] predecessor,DoubleList<Integer> visited){
         for(int i=0;i<relationShips.length;i++){
             if(relationShips[i]<+Integer.MAX_VALUE){
@@ -57,6 +70,13 @@ public class Dijkstra<T> {
         }
         visited.AddTail(node);
     }
+
+    /**
+     * Method to find the minimum value
+     * @param array
+     * @param ExcludedPosition
+     * @return
+     */
     private int findMin(double[] array,DoubleList<Integer> ExcludedPosition){
         if(array==null)return -1;
         if(array.length<=0)return -1;
@@ -67,6 +87,13 @@ public class Dijkstra<T> {
         }
         return min;
     }
+
+    /**
+     * method to find the shortest path
+     * @param start
+     * @param end
+     * @return
+     */
     public DoubleList<T> getShortestRoute(T start, T end){
         if(!graph.inGraph(end) || !graph.inGraph(start)){
             predecessor=null;
@@ -80,6 +107,13 @@ public class Dijkstra<T> {
 
 
     }
+
+    /**
+     * Method to obtain the price of the route
+     * @param start
+     * @param end
+     * @return
+     */
     public double getPrice(T start,T end){
         double value=Integer.MAX_VALUE;
         if(graph.inGraph(start) && graph.inGraph(end)){
@@ -88,6 +122,13 @@ public class Dijkstra<T> {
         }
         return value;
     }
+
+    /**
+     * Method to find a way
+     * @param Start
+     * @param End
+     * @return
+     */
     private Stack<Integer> findWay(int Start, int End){
         Stack<Integer>  stack=new Stack<Integer>();
         int reference=End;
@@ -99,6 +140,13 @@ public class Dijkstra<T> {
         stack.push(Start);
         return stack;
     }
+
+    /**
+     * Method to get a route
+     * @param Start
+     * @param End
+     * @return
+     */
     private DoubleList<T> getWay(int Start,int End){
         Stack<Integer> order=findWay(Start,End);
         DoubleList<T> nodes=graph.getNodes();

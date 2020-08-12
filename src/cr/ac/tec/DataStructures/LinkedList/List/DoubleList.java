@@ -282,6 +282,11 @@ public class DoubleList<T> implements List<T> {
         this.head=this.tail=null;
         this.length=0;
     }
+
+    /**
+     *
+     * @param List
+     */
     public void appendList(DoubleList<T> List){
         if(List==null || List.getLength()<=0)return;
         for(int i=0;i<List.getLength();i++){
@@ -289,6 +294,11 @@ public class DoubleList<T> implements List<T> {
         }
 
     }
+
+    /**
+     *
+     * @param array
+     */
     public void appendArray(T[] array){
         if(array==null || array.length<=0)return;
         for(int i=0;i<array.length;i++){

@@ -5,8 +5,17 @@ import cr.ac.tec.DataStructures.LinkedList.Search.BinarySearch;
 import cr.ac.tec.DataStructures.LinkedList.Search.Searching;
 import cr.ac.tec.DataStructures.LinkedList.Sorting.InsertionDouble;
 
+/**
+ *
+ * @param <T>
+ */
 public class Set<T extends Comparable>extends ComparableDoubleList<T> {
     Searching<T> searching;
+
+    /**
+     *
+     * @param searching
+     */
     public Set(Searching<T> searching){
         super();
         super.setSortingMethod(new InsertionDouble<T>());
@@ -15,6 +24,10 @@ public class Set<T extends Comparable>extends ComparableDoubleList<T> {
         this.searching.setList(this);
     }
 
+    /**
+     *
+     * @param Newinfo the info that'll be stored in the node
+     */
     @Override
     public void AddTail(T Newinfo) {
        sort();
@@ -35,12 +48,21 @@ public class Set<T extends Comparable>extends ComparableDoubleList<T> {
         length++;
     }
 
+    /**
+     *
+     * @param NewInfo the info that will be stored in the node
+     */
     @Override
     @Deprecated
     public void AddHead(T NewInfo) {
         return;
     }
 
+    /**
+     *
+     * @param info the info to be checked in the list
+     * @return
+     */
     @Override
     public boolean inList(T info) {
        return searching.find(info);

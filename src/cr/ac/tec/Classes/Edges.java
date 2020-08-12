@@ -3,7 +3,10 @@ package cr.ac.tec.Classes;
 import cr.ac.tec.Rail.Roads.Nodes;
 
 import java.util.ArrayList;
-
+/**
+ * @author Andrey Zuñiga
+ * This class defines the relationships
+ */
 public class Edges {
     private static final int from=0;
     private static final int to=1;
@@ -14,11 +17,24 @@ public class Edges {
     private double size=20;
     private final String type= "arrow";
 
+    /**
+     * The constructor
+     * @param id
+     * @param source
+     * @param target
+     *
+     */
     public Edges(String id,String source,String target){
         this.id=id;
         this.source=source;
         this.target=target;
     }
+
+    /**
+     * The constructor
+     * @param nodes
+     * @param id
+     */
     public Edges(ArrayList<Nodes> nodes, String id){
         this.id=id;
         if(nodes==null || nodes.size()!=TheSize)return;
@@ -37,7 +53,6 @@ public class Edges {
     public String getTarget() {
         return target;
     }
-
 
     // Setters
     public void setId(String id) {

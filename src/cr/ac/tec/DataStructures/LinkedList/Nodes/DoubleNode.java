@@ -1,5 +1,9 @@
 package cr.ac.tec.DataStructures.LinkedList.Nodes;
 
+/**
+ *
+ * @param <T>
+ */
 public class DoubleNode<T> {
     private T info;//Stored Information
     private DoubleNode<T> Back;//The next node reference
@@ -82,6 +86,10 @@ public class DoubleNode<T> {
         return Front;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "DoubleNode{" +

@@ -1,5 +1,9 @@
 package cr.ac.tec.DataStructures.LinkedList.Nodes;
 
+/**
+ * @author Andrey Zuniga
+ * @param <T>
+ */
 public class SingleListNode<T> {
     private T info;// Node's content
     private SingleListNode<T> Nextnode;//Next Node reference

@@ -1,6 +1,16 @@
 package cr.ac.tec.DataStructures.Array;
 
+/**
+ * This class is to increase the size of an array
+ * @author Andrey Zuñiga
+ * @param <T>
+ */
 public class ArrayTools<T> {
+    /**
+     * The constructor
+     * @param array
+     * @return
+     */
     public T[] ExpandArray(T[] array){
         if(array==null)return null;
         T[] newArray=(T[])new Object[array.length+1];
@@ -9,6 +19,12 @@ public class ArrayTools<T> {
         }
         return newArray;
     }
+
+    /**
+     * this method increases the size of a matrix
+     * @param matrix
+     * @return
+     */
     public T[][] ExpandMatrix(T[][] matrix){
         if(matrix==null)return null;
         T[][] newMatrix=(T[][])new Object[matrix.length+1][matrix.length+1];
@@ -17,6 +33,12 @@ public class ArrayTools<T> {
         }
         return newMatrix;
     }
+
+    /**
+     * this method increases the size of a matrix
+     * @param matrix
+     * @return
+     */
     public static double[][] expandDoubleMatrix(double[][] matrix){
         if(matrix==null)return null;
         double[][] newMatrix=new double[matrix.length+1][matrix.length+1];
@@ -27,6 +49,13 @@ public class ArrayTools<T> {
         }
         return newMatrix;
     }
+
+    /**
+     * method to delete rows
+     * @param matrix
+     * @param pos
+     * @return
+     */
     public static double [][] deleteDoubleRow(double[][] matrix, int pos){
         if(matrix==null)return null;
         if(pos<0 || pos>=matrix.length)return matrix;

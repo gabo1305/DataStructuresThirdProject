@@ -4,6 +4,10 @@ import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 
 import java.util.ArrayList;
 
+/**
+ * @author Andrey Zuniga
+ * @param <T>
+ */
 public class LinkedListTool<T> {
     public  DoubleList<T> Merge(DoubleList<T>...Lists){
         DoubleList<T> returning=new DoubleList<>();
@@ -18,6 +22,12 @@ public class LinkedListTool<T> {
         }
         return returning;
     }
+
+    /**
+     *
+     * @param List
+     * @return
+     */
     public static DoubleList<String> toStringList(DoubleList List){
         if(List==null)return null;
         DoubleList<String> returning=new DoubleList<>();
@@ -28,6 +38,12 @@ public class LinkedListTool<T> {
         }
         return returning;
     }
+
+    /**
+     *
+     * @param List
+     * @return
+     */
     public static String[] getArray(DoubleList<String> List){
         if(List==null)return null;
         String[] array=new String[List.getLength()];
@@ -36,12 +52,24 @@ public class LinkedListTool<T> {
         }
         return array;
     }
+
+    /**
+     *
+     * @param List
+     * @param array
+     */
     public static void appendString(DoubleList<String>List ,String[] array){
         if(List==null || array==null)return;
         for(int i=0;i<array.length;i++){
             List.AddTail(array[i]);
         }
     }
+
+    /**
+     *
+     * @param List
+     * @return
+     */
     public ArrayList<T> toJavaList(DoubleList<T> List){
         if(List==null)return null;
         ArrayList<T> arrayList=new ArrayList<>();
@@ -50,6 +78,12 @@ public class LinkedListTool<T> {
         }
         return arrayList;
     }
+
+    /**
+     *
+     * @param arrayList
+     * @return
+     */
     public DoubleList<T> tDoubleList(ArrayList<T> arrayList){
         if(arrayList==null)return null;
         DoubleList<T> List=new DoubleList<>();

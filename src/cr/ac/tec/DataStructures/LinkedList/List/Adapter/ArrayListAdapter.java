@@ -4,6 +4,10 @@ import cr.ac.tec.DataStructures.LinkedList.List.DoubleList;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @param <T>
+ */
 public class ArrayListAdapter<T> extends DoubleList<T> {
     private ArrayList<T> arrayList;
     public ArrayListAdapter(ArrayList arrayList){
@@ -11,12 +15,21 @@ public class ArrayListAdapter<T> extends DoubleList<T> {
         this.length=arrayList.size();
     }
 
+    /**
+     *
+     * @param position the position
+     * @return
+     */
     @Override
     public T get(int position) {
         if(!verification())return null;
         return arrayList.get(position);
     }
 
+    /**
+     *
+     * @param Newinfo the info that'll be stored in the node
+     */
     @Override
     public void AddTail(T Newinfo) {
         if(!verification())return;
@@ -25,6 +38,10 @@ public class ArrayListAdapter<T> extends DoubleList<T> {
 
     }
 
+    /**
+     *
+     * @param NewInfo the info that will be stored in the node
+     */
     @Override
     public void AddHead(T NewInfo) {
         if(!verification())return;
@@ -32,6 +49,10 @@ public class ArrayListAdapter<T> extends DoubleList<T> {
         length++;
     }
 
+    /**
+     *
+     * @param position the position to be deleted
+     */
     @Override
     public void delete(int position) {
         if(!verification())return;
@@ -39,6 +60,10 @@ public class ArrayListAdapter<T> extends DoubleList<T> {
         arrayList.remove(position);
     }
 
+    /**
+     *
+     * @return
+     */
 
     private boolean verification(){
         if(arrayList==null ||  arrayList.size()<=0)return false;
