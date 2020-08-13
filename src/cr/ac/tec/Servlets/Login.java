@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.Console;
 import java.io.IOException;
+
+/**
+ *
+ */
 @WebServlet(name = "LoginServlet",value = "/log")
 public class Login extends HttpServlet {
     private final String name="UserName";
@@ -29,6 +33,14 @@ public class Login extends HttpServlet {
         resp.getWriter().print(user.getID());
         resp.sendRedirect("prueba.html");
     }
+
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req,resp);

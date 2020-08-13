@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ *
+ */
 @WebServlet(name="ATM",value = "/buy")
 public class BuyTicket extends HttpServlet {
     private static final int random=1;
@@ -24,6 +27,14 @@ public class BuyTicket extends HttpServlet {
     private static final String End="End";
     private static final String Amount="Amount";
     private static final String date="Date";
+
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -41,13 +52,19 @@ public class BuyTicket extends HttpServlet {
             System.out.println("End " + endStop);
             int amount = Integer.parseInt(req.getParameter(Amount));
             ArrayList<Ticket> ArrayListTicket = requestManager.getTicket(Name, startStop, endStop, amount,date2);
-            PrintWriter printWriter = resp.getWriter();
-            if (ArrayListTicket == null) printWriter.print("null");
-            else printWriter.print(JsonExchange.getStringFromObject(ArrayListTicket));
+            resp.sendRedirect("/prueba.html");
+
         }
         catch (Exception e){}
     }
 
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req,resp);

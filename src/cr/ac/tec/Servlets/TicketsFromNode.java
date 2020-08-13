@@ -12,8 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *
+ */
 @WebServlet(value = "/ConsultNode")
 public class TicketsFromNode extends HttpServlet {
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id=Integer.parseInt(req.getParameter("Node"));
@@ -24,6 +34,14 @@ public class TicketsFromNode extends HttpServlet {
         System.out.println(re);
         resp.getWriter().print(re);
     }
+
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

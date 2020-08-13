@@ -12,8 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *
+ */
 @WebServlet(value = "ConsultFromUser")
 public class TicketsFromUser extends HttpServlet {
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String UserName=req.getParameter("UserName");
@@ -21,6 +31,14 @@ public class TicketsFromUser extends HttpServlet {
         ArrayList<Ticket> List=requestManager.getTicketsByUser(UserName);
         resp.getWriter().print(JsonExchange.getStringFromObject(List));
     }
+
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -11,10 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.Console;
 import java.io.IOException;
 
+/**
+ *
+ */
 @WebServlet("/Adminlog")
 public class AdminLogin extends HttpServlet {
     private final String username="adminUsername";
     private final String password="adminPassword";
+    private final String AdminPassword="Admin";
+
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String UserName=req.getParameter(username);
@@ -25,7 +37,7 @@ public class AdminLogin extends HttpServlet {
         //user=tree.getMember(user);
         //resp.getWriter().print(user.getID());
 
-        if(UserName.equals("xd") && Password.equals("xd")){
+        if(UserName.equals(AdminPassword) && Password.equals(AdminPassword)){
 
             resp.sendRedirect("Admin.jsp");
         }
@@ -34,6 +46,13 @@ public class AdminLogin extends HttpServlet {
         }
     }
 
+    /**
+     *
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req,resp);

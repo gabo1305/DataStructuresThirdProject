@@ -23,6 +23,7 @@ public class AddRoute extends HttpServlet {
         int Distance=Integer.parseInt(distance);
         RequestManager requestManager=RequestManager.getInstance();
         requestManager.addRelationShip(Init,Final,Distance);
-        resp.getWriter().print(Init+"/n"+Final+"/n"+distance);
+        resp.sendRedirect("/Admin.jsp");
+
     }
 }
