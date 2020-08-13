@@ -113,6 +113,14 @@ public class RailGraph {
         }
         return null;
     }
+    public boolean isThereAName(String Name){
+        if(Name==null)return false;
+        DoubleList<Nodes> List=graph.getNodes();
+        for(int i=0;i<List.getLength();i++){
+            if(Name.equalsIgnoreCase(List.get(i).getName()))return true;
+        }
+        return false;
+    }
     public double getPrice(Nodes node1,Nodes node2){
         if(node1==null || node2==null)return NullState;
         return dijkstra.getPrice(node1,node2);
