@@ -37,7 +37,8 @@ public class DeleteStopping extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String Node=req.getParameter("NodeID");
         RequestManager requestManager=RequestManager.getInstance();
-        if(!requestManager.deleteNode(Node));
-        resp.sendRedirect("/Admin.jsp");
+        if(!requestManager.deleteNode(Node))resp.getWriter().print("We couldn't delete the stopping");
+        else resp.getWriter().print("The node has been deleted");
+        //resp.sendRedirect("/Admin.jsp");
     }
 }

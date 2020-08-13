@@ -121,5 +121,15 @@ public class RailGraph {
         if(data<=0)return;
         if(size==0)size=data;
     }
+    public boolean isThereARoute(Nodes node1,Nodes node2){
+        double price=dijkstra.getPrice(node1,node2);
+        if(price==Integer.MAX_VALUE)return false;
+        return true;
+    }
+    public boolean isThereAnEdge(Nodes node1,Nodes node2){
+        DoubleList<Nodes> List=graph.getRelationShips(node1);
+        if(List.inList(node2))return true;
+        return false;
+    }
 
 }
