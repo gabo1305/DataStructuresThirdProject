@@ -17,9 +17,9 @@ public class RailGraph {
     private static final int to=1;
     private static int StoppingID;
     private final int NullState=Integer.MAX_VALUE;
-    private final String NodesRoute="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\Nodes.json";
-    private final String RelationRoute="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\RelationNodes.json";
-    private final String graphReferenceRelationShip="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\web\\estaciones.json";
+    private final String NodesRoute="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Nodes.json";
+    private final String RelationRoute="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\RelationNodes.json";
+    private final String graphReferenceRelationShip="C:\\Users\\migue\\DataStructuresThirdProyect\\web\\estaciones.json";
     private Dijkstra<Nodes> dijkstra;
     private Graph<Nodes> graph;
     private DoubleList<Nodes> nodes;
@@ -137,6 +137,15 @@ public class RailGraph {
     public boolean isThereAnEdge(Nodes node1,Nodes node2){
         DoubleList<Nodes> List=graph.getRelationShips(node1);
         if(List.inList(node2))return true;
+        return false;
+    }
+
+    public boolean isThereAName(String Name){
+        if(Name==null)return false;
+        DoubleList<Nodes> List=graph.getNodes();
+        for(int i=0;i<List.getLength();i++){
+            if(Name.equalsIgnoreCase(List.get(i).getName()))return true;
+        }
         return false;
     }
 

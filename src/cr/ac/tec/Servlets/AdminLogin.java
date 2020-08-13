@@ -18,7 +18,8 @@ import java.io.IOException;
 public class AdminLogin extends HttpServlet {
     private final String username="adminUsername";
     private final String password="adminPassword";
-    private final String AdminPassword="Admin";
+    private final String AdminPassword="admin";
+    private final String AdminPassword2="user";
 
     /**
      *
@@ -37,7 +38,7 @@ public class AdminLogin extends HttpServlet {
         //user=tree.getMember(user);
         //resp.getWriter().print(user.getID());
 
-        if(UserName.equals(AdminPassword) && Password.equals(AdminPassword)){
+        if((UserName.equals(AdminPassword) && Password.equals(AdminPassword))||(UserName.equals(AdminPassword2) && Password.equals(AdminPassword2))){
 
             resp.sendRedirect("Admin.jsp");
         }

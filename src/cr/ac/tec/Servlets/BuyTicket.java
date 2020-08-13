@@ -39,8 +39,6 @@ public class BuyTicket extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-
-
             String Name = req.getParameter(UserName);
             RequestManager requestManager = RequestManager.getInstance();
             String startStop = req.getParameter(Start);
@@ -53,13 +51,21 @@ public class BuyTicket extends HttpServlet {
             System.out.println("End " + endStop);
             int amount = Integer.parseInt(req.getParameter(Amount));
             ArrayList<Ticket> ArrayListTicket = requestManager.getTicket(Name, startStop, endStop, amount,date2);
-            if(ArrayListTicket==null || ArrayListTicket.isEmpty())resp.getWriter().print("There is no route between the selected routes");
-            else resp.getWriter().print("The route is "+JsonExchange.getStringFromObject(ArrayListTicket.get(zero).getTrajectory()));
+            if(ArrayListTicket==null || ArrayListTicket.isEmpty()) {
+                resp.getWriter().print("There is no route between the selected routes");
+                System.out.println("There is no route between the selected routes");
+            }
+            else {
+                System.out.println("The route is "+JsonExchange.getStringFromObject(ArrayListTicket.get(zero).getTrajectory()));
+                resp.getWriter().print("The route is "+JsonExchange.getStringFromObject(ArrayListTicket.get(zero).getTrajectory()));
+            }
             //resp.sendRedirect("/prueba.html");
 
 
         }
-        catch (Exception e){}
+        catch (Exception e){
+            System.out.println("error del catch: " +e.getMessage());
+        }
     }
 
     /**

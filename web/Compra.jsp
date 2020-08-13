@@ -6,8 +6,10 @@
 
     const url='http://localhost:9080/cual';
     const url2='http://localhost:9080/getPrice';
+    const url3='http://localhost:9080/buy'
     const Http= new XMLHttpRequest();
     const Http2= new XMLHttpRequest();
+    var Http3 = new XMLHttpRequest();
     const HttpMethod="GET";
     var text;
     var textPrice="";
@@ -55,6 +57,7 @@
     }
 
 
+
         function estaciones() {
         obj = JSON.parse(text);
         var estacionOption = "<option value=''>select</option>"
@@ -64,22 +67,28 @@
             estacionOption += "<option value='"+obj.nodes[i].id+"'>"+obj.nodes[i].label+"</option>"
         }
         document.getElementById('dropdownEstacionInicial').innerHTML = estacionOption;
-
-
-
+        document.getElementById('dropdownEstacionFinal').innerHTML = estacionOption;
     }
-    function paradasDisponibles() {
-        obj = JSON.parse(text);
-        var estacionId = document.getElementById("dropdownEstacionInicial");
-        var paradasOption = "<option name=''> select</option>"
 
-        for (var i=0; i<obj.edges.length; i++){
-            if (obj.edges[i].source === estacionId.value){
-                paradasOption += "<option value='"+obj.nodes[obj.edges[i].target].id+"'>"+obj.nodes[obj.edges[i].target].label+"</option>"
+    function compra() {
+        var UserName = document.getElementById("SavedUser").value
+        var Start = document.getElementById("dropdownEstacionInicial").value
+        var End = document.getElementById("dropdownEstacionFinal").value
+        var Amount = document.getElementById("AmountId").value
+        var Date = document.getElementById("date").value
+        var get = url3 + "?UserName=" + UserName + "&Start=" + Start + "&End=" + End + "&Amount=" + Amount + "&Date=" + Date;
+        Http3.open(HttpMethod, get)
+        Http3.send()
+        console.log("get:" + get)
+        Http3.onreadystatechange = (e) => {
+            if(Http3.readyState === XMLHttpRequest.DONE) {
+                console.log("Http3 response text: " + Http3.responseText)
+                alert(Http3.responseText)
             }
         }
-        document.getElementById('dropdownEstacionFinal').innerHTML = paradasOption;
+
     }
+
 
 
 </script>
@@ -91,16 +100,16 @@
 
 <h2>Add your route to shopping cart </h2>
 
-<form  action="/buy">
 
-    Enter username<br>
-    <input type="text" name="UserName" id="SavedUser" hidden>
+
+    ID Card <br>
+    <input type="text" name="UserName" id="SavedUser" disabled>
     <br>
 
 
 
     Select a starting point <br>
-    <select id = "dropdownEstacionInicial"  onchange="paradasDisponibles()" name="Start" required>
+    <select id = "dropdownEstacionInicial" name="Start" required>
     </select><br><br>
 
 
@@ -118,12 +127,12 @@
 
     select the date of use of your ticket<br>
 
-    <input type="date" name="Date" required
+    <input type="date" name="Date" required id="date"
     min="2020-08-13" max="2021-01-01">
     <br>
 
 
-    <input type="submit" id="buyID" value="buy"><br>
+    <input type="submit" id="buyID" onclick="compra()" value="buy"><br>
     <br>
 
     This is the cost of your purchase<br>
@@ -132,8 +141,6 @@
 
     <br>
 
-
-</form>
 
 <button type="button" id="GetID"  onclick="getPrice()">Get Price</button>
 

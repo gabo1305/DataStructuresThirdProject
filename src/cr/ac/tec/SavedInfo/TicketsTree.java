@@ -18,7 +18,7 @@ public class TicketsTree extends InfoTree<Ticket> {
      *
      */
     private TicketsTree(){
-        route="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\Tickets.json";
+        route="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Tickets.json";
         Tree=new BinaryTree<>();
         getData();
     }

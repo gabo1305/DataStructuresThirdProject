@@ -3,7 +3,7 @@ package cr.ac.tec.Rail;
 import cr.ac.tec.FileProccessing.JsonExchange;
 
 public class TakenRoad {
-    private static String route="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\TakenRoad.json";
+    private static String route="C:\\Users\\migue\\DataStructuresThirdProyect\\src\\cr\\ac\\tec\\Rail\\TakenRoad.java";
     private boolean[][] taken;
     private static TakenRoad instance;
     private TakenRoad(int a){
