@@ -27,6 +27,7 @@ public class BuyTicket extends HttpServlet {
     private static final String End="End";
     private static final String Amount="Amount";
     private static final String date="Date";
+    private static final int zero=0;
 
     /**
      *
@@ -52,7 +53,10 @@ public class BuyTicket extends HttpServlet {
             System.out.println("End " + endStop);
             int amount = Integer.parseInt(req.getParameter(Amount));
             ArrayList<Ticket> ArrayListTicket = requestManager.getTicket(Name, startStop, endStop, amount,date2);
-            resp.sendRedirect("/prueba.html");
+            if(ArrayListTicket==null || ArrayListTicket.isEmpty())resp.getWriter().print("There is no route between the selected routes");
+            else resp.getWriter().print("The route is "+JsonExchange.getStringFromObject(ArrayListTicket.get(zero).getTrajectory()));
+            //resp.sendRedirect("/prueba.html");
+
 
         }
         catch (Exception e){}

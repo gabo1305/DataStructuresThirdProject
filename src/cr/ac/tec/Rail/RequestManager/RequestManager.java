@@ -88,17 +88,21 @@ public class RequestManager {
             register.AddData(id,a,b);
         }
     }
-    public void addNode(String Name,String XPos,String YPos){
+    public boolean addNode(String Name,String XPos,String YPos){
+        if(graph.getNode(Name)!=null)return false;
         graph.addStopping(Name,Double.parseDouble(XPos),Double.parseDouble(YPos));
         register.expand();
         updateGraphFileRep();
+        return true;
     }
-    public void addRelationShip(String Name1,String Name2,int weight){
+    public boolean addRelationShip(String Name1,String Name2,int weight){
         Nodes node1=graph.getNode(Name1);
         Nodes node2=graph.getNode(Name2);
-        if(node1==null || node2==null)return;
+        if(node1==null || node2==null)return false;
+        if(graph.isThereAnEdge(node1,node2))return false;
         graph.AddRelationShip(node1,node2,weight);
         updateGraphFileRep();
+        return true;
     }
     public boolean deleteNode(String Name){
        int pos= graph.getPosition(graph.getNode(Name));

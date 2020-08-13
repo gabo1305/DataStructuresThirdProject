@@ -26,8 +26,9 @@ public class DeleteRelationShip extends HttpServlet {
         String start=req.getParameter("Estaciones");
         String end=req.getParameter("Paradas");
         RequestManager requestManager=RequestManager.getInstance();
-        if(!requestManager.deleteRelationShip(start,end));
-        resp.sendRedirect("/Admin.jsp");
+        if(!requestManager.deleteRelationShip(start,end))resp.getWriter().print("The route hasn't been deleted");
+        else resp.getWriter().print("The route has been deleted");
+        //resp.sendRedirect("/Admin.jsp");
     }
 
     /**

@@ -30,8 +30,9 @@ public class AddStopping extends HttpServlet {
         String name=req.getParameter(StopName);
         String posX=req.getParameter(XPos);
         String posY=req.getParameter(YPos);
-        RequestManager.getInstance().addNode(name,posX,posY);
-        resp.sendRedirect("/Admin.jsp");
+        if(RequestManager.getInstance().addNode(name,posX,posY))resp.getWriter().print("The node has been added");
+        else resp.getWriter().print("The node already exist");
+        //resp.sendRedirect("/Admin.jsp");
     }
 
     /**
