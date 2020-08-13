@@ -101,8 +101,9 @@
 <h2>Add your route to shopping cart </h2>
 
 
-    Enter username<br>
-    <input type="text" name="UserName" id="SavedUser" hidden>
+
+    ID Card <br>
+    <input type="text" name="UserName" id="SavedUser" disabled>
     <br>
 
 

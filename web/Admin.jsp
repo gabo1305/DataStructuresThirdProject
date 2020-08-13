@@ -196,13 +196,15 @@
 <h2>Agregar estacion</h2>
 
     Nombre de nueva estacion<br>
-    <input type="text" id="StopName" name="StopName"><br><br>
+    <input type="text" id="StopName" name="StopName" required><br><br>
 
     Posicion en X de estacion<br>
-    <input type="number" id="XPos" name="XAxis"><br><br>
+    <input type="number" id="XPos" name="XAxis" required
+           min="1" max="100"><br><br>
 
     Posicion en Y de estacion<br>
-    <input type="number" id="YPos" name="YAxis"><br><br>
+    <input type="number" id="YPos" name="YAxis" required
+           min="1" max="100"><br><br>
 
     <input type="submit" onclick="agregarEstacion()" value="Add new station">
 
@@ -236,7 +238,8 @@
     </select><br><br>
 
     Select the distance between the two points <br>
-    <input type="number" id="distance" name="Distance" required><br>
+    <input type="number" id="distance" name="Distance" required
+           min="1" max="100"><br>
     <br>
     <input type="submit" onclick="agregarRuta()" value="Agregar ruta">
 
