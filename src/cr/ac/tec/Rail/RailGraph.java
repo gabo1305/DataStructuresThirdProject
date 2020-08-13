@@ -91,9 +91,18 @@ public class RailGraph {
         LinkedListTool<Nodes> tool=new LinkedListTool<>();
         ArrayList<Nodes> Nodes=tool.toJavaList(graph.getNodes());
         ArrayList<ArrayList<Nodes>> RelationList=graph.getRelationShips();
+        double[][] values=graph.getMatrix();
         ArrayList<Edges> edges=new ArrayList<>();
+        Edges reference;
+        ArrayList<Nodes> TempList;
+        double price;
         for (int i=0;i<RelationList.size();i++){
-            edges.add(new Edges(RelationList.get(i),Integer.toString(i)));
+            TempList=RelationList.get(i);
+            reference=new Edges(TempList,Integer.toString(i));
+            price=values[Integer.parseInt(TempList.get(from).getID())][Integer.parseInt(TempList.get(to).getID())];
+            reference.setLabel(Double.toString(price));
+            edges.add(reference);
+
         }
         RouteStation routeStation=new RouteStation(Nodes,edges);
         JsonExchange.toJsonFromObject(graphReferenceRelationShip,routeStation);

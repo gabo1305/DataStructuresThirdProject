@@ -14,6 +14,16 @@ public class Edges {
     private String id;
     private String source;
     private String target;
+    private String label;
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
     private double size=20;
     private final String type= "arrow";
 

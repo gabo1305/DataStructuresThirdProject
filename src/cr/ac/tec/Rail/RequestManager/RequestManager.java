@@ -15,6 +15,7 @@ import java.util.Date;
 
 
 public class RequestManager {
+    private static int PricePerKilometer=25;
     private static RequestManager instance;
     private RailGraph graph;
     private UsersTree usersTree;
@@ -100,7 +101,7 @@ public class RequestManager {
         Nodes node2=graph.getNode(Name2);
         if(node1==null || node2==null)return false;
         if(graph.isThereAnEdge(node1,node2))return false;
-        graph.AddRelationShip(node1,node2,weight);
+        graph.AddRelationShip(node1,node2,PricePerKilometer*weight);
         updateGraphFileRep();
         return true;
     }
