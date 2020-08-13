@@ -132,4 +132,13 @@ public class RailGraph {
         return false;
     }
 
+    public boolean isThereAName(String Name){
+        if(Name==null)return false;
+        DoubleList<Nodes> List=graph.getNodes();
+        for(int i=0;i<List.getLength();i++){
+            if(Name.equalsIgnoreCase(List.get(i).getName()))return true;
+        }
+        return false;
+    }
+
 }

@@ -89,7 +89,7 @@ public class RequestManager {
         }
     }
     public boolean addNode(String Name,String XPos,String YPos){
-        if(graph.getNode(Name)!=null)return false;
+        if(graph.isThereAName(Name))return false;
         graph.addStopping(Name,Double.parseDouble(XPos),Double.parseDouble(YPos));
         register.expand();
         updateGraphFileRep();

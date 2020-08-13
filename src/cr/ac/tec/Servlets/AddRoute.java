@@ -24,8 +24,8 @@ public class AddRoute extends HttpServlet {
         RequestManager requestManager=RequestManager.getInstance();
         boolean value=requestManager.addRelationShip(Init,Final,Distance);
         //resp.sendRedirect("/Admin.jsp");
-        if(value)resp.getWriter().print("Ticket Added");
-        else resp.getWriter().print("The route already exist");
+        if(value)resp.getWriter().print("Route added");
+        else resp.getWriter().print("The route already exists");
 
     }
 }

@@ -10,9 +10,17 @@
 
 <script>
     const url='http://localhost:9080/cual';
+    const url2='http://localhost:9080/addStopping';
+    const url3='http://localhost:9080/deleteNode';
+    const url4='http://localhost:9080/newRoute';
+    const url5='http://localhost:9080/deleteRoute';
     const Http= new XMLHttpRequest();
     const Http2= new XMLHttpRequest();
     const Http3 = new XMLHttpRequest();
+    var Http4 = new XMLHttpRequest();
+    var Http5 = new XMLHttpRequest();
+    var Http6 = new XMLHttpRequest();
+    var Http7 = new XMLHttpRequest();
     const HttpMethod="GET";
     var yaEsta = false;
     var text;
@@ -114,6 +122,68 @@
         document.getElementById('userTable').innerHTML = tableRow;
     }
 
+    function agregarEstacion() {
+        var StopName = document.getElementById("StopName").value
+        var XPos = document.getElementById("XPos").value
+        var YPos = document.getElementById("YPos").value
+        var get = url2+"?StopName="+StopName+"&XAxis="+XPos+"&YAxis="+YPos;
+        Http4.open(HttpMethod, get)
+        Http4.send()
+        console.log("get:" + get)
+        Http4.onreadystatechange = (e) => {
+            if(Http4.readyState === XMLHttpRequest.DONE) {
+                console.log("Http4 response text: " + Http4.responseText)
+                alert(Http4.responseText)
+            }
+        }
+    }
+
+    function eliminarEstacion() {
+        var NodeId = document.getElementById("dropdownEstacionEliminar").value
+        var get = url3+"?NodeID="+NodeId;
+        Http5.open(HttpMethod, get)
+        Http5.send()
+        console.log("get:" + get)
+        Http5.onreadystatechange = (e) => {
+            if(Http5.readyState === XMLHttpRequest.DONE) {
+                console.log("Http5 response text: " + Http5.responseText)
+                alert(Http5.responseText)
+            }
+        }
+    }
+
+    function agregarRuta() {
+        var Initial = document.getElementById("dropdownEstacionInicial").value
+        var Final = document.getElementById("dropdownEstacionFinal").value
+        var Distance = document.getElementById("distance").value
+        var get = url4+"?Initial="+Initial+"&Final="+Final+"&Distance="+Distance;
+        Http6.open(HttpMethod, get)
+        Http6.send()
+        console.log("get:" + get)
+        Http6.onreadystatechange = (e) => {
+            if(Http6.readyState === XMLHttpRequest.DONE) {
+                console.log("Http6 response text: " + Http6.responseText)
+                alert(Http6.responseText)
+            }
+        }
+    }
+
+    function eliminarRuta() {
+        var Initial = document.getElementById("dropdownEstaciones").value
+        var Final = document.getElementById("dropdownParadas").value
+        var get = url5+"?Estaciones="+Initial+"&Paradas="+Final;
+        Http7.open(HttpMethod, get)
+        Http7.send()
+        console.log("get:" + get)
+        Http7.onreadystatechange = (e) => {
+            if(Http7.readyState === XMLHttpRequest.DONE) {
+                console.log("Http7 response text: " + Http7.responseText)
+                alert(Http7.responseText)
+            }
+        }
+    }
+
+
 
 
 </script>
@@ -125,35 +195,28 @@
 
 <h2>Agregar estacion</h2>
 
-<form action="/addStopping">
     Nombre de nueva estacion<br>
-    <input type="text" name="StopName"><br><br>
+    <input type="text" id="StopName" name="StopName"><br><br>
 
     Posicion en X de estacion<br>
-    <input type="number" name="XAxis"><br><br>
+    <input type="number" id="XPos" name="XAxis"><br><br>
 
     Posicion en Y de estacion<br>
-    <input type="number" name="YAxis"><br><br>
+    <input type="number" id="YPos" name="YAxis"><br><br>
 
-    <input type="submit" value="Add new station">
-
-</form>
+    <input type="submit" onclick="agregarEstacion()" value="Add new station">
 
 <br><br>
 
 
 
 <h2>Eliminar estacion</h2>
-
-<form action="/deleteNode">
-
     Estacion que desea eliminar<br>
     <select id="dropdownEstacionEliminar" name="NodeID" required>
     </select><br><br>
 
-    <input type="submit" value="Eliminar estacion">
+    <input type="submit" onclick="eliminarEstacion()" value="Eliminar estacion">
 
-</form>
 
 
 <br><br>
@@ -162,7 +225,7 @@
 
 <h2>Agregar ruta</h2>
 
-<form  action="/newRoute">
+
     Select a starting point <br>
     <select id = "dropdownEstacionInicial" name="Initial" required>
     </select><br><br>
@@ -173,17 +236,17 @@
     </select><br><br>
 
     Select the distance between the two points <br>
-    <input type="number" name="Distance" required><br>
+    <input type="number" id="distance" name="Distance" required><br>
     <br>
-    <input type="submit" value="Agregar ruta">
-</form>
+    <input type="submit" onclick="agregarRuta()" value="Agregar ruta">
+
 
 <br><br>
 
 
 <h2>Eliminar ruta</h2>
 
-<form action="/deleteRoute">
+
     <h4>Estacion</h4>
     <select id="dropdownEstaciones" onchange="paradasDisponibles()" name="Estaciones" required>
     </select>
@@ -193,8 +256,8 @@
     </select><br><br>
 
 
-    <input type="submit" value="Eliminar ruta">
-</form>
+    <input type="submit" onclick="eliminarRuta()" value="Eliminar ruta">
+
 
 <br><br>
 
