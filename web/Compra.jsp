@@ -70,8 +70,10 @@
     }
     function paradasDisponibles() {
         obj = JSON.parse(text);
+        console.log("Esto es text: "+text)
         var estacionId = document.getElementById("dropdownEstacionInicial");
         var paradasOption = "<option name=''> select</option>"
+        console.log("estacion.value: "+estacionId.value)
 
         for (var i=0; i<obj.edges.length; i++){
             if (obj.edges[i].source === estacionId.value){

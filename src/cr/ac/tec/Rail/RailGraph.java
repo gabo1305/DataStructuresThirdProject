@@ -17,9 +17,9 @@ public class RailGraph {
     private static final int to=1;
     private static int StoppingID;
     private final int NullState=Integer.MAX_VALUE;
-    private final String NodesRoute="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\Nodes.json";
-    private final String RelationRoute="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\RelationNodes.json";
-    private final String graphReferenceRelationShip="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\web\\estaciones.json";
+    private final String NodesRoute="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Nodes.json";
+    private final String RelationRoute="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\RelationNodes.json";
+    private final String graphReferenceRelationShip="C:\\Users\\migue\\DataStructuresThirdProyect\\web\\estaciones.json";
     private Dijkstra<Nodes> dijkstra;
     private Graph<Nodes> graph;
     private DoubleList<Nodes> nodes;
