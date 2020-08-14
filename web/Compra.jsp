@@ -88,19 +88,27 @@
         var End = document.getElementById("dropdownEstacionFinal").value
         var Amount = document.getElementById("AmountId").value
         var Date = document.getElementById("date").value
-        var get = url3 + "?UserName=" + UserName + "&Start=" + Start + "&End=" + End + "&Amount=" + Amount + "&Date=" + Date;
 
-        Http3.open(HttpMethod, get)
-        Http3.send()
-        console.log("get:" + get)
-        Http3.onreadystatechange = (e) => {
-            if(Http3.readyState === XMLHttpRequest.DONE) {
-                console.log("Http3 response text: " + Http3.responseText)
-                alert("purchase completed"+ Http3.responseText)
+        console.log("xdxdxd"+UserName+Start+End+Amount+Date)
+        var get = url3 + "?UserName=" + UserName + "&Start=" + Start + "&End=" + End + "&Amount=" + Amount + "&Date=" + Date;
+        if(Start=="" || End=="" || Amount==""||Date==""){
+            alert("nel llene espacios")
+        }else{
+            Http3.open(HttpMethod, get)
+            Http3.send()
+            console.log("get:" + get)
+            Http3.onreadystatechange = (e) => {
+                if(Http3.readyState === XMLHttpRequest.DONE) {
+                    console.log("Http3 response text: " + Http3.responseText)
+                    alert( Http3.responseText)
+                }
+
+
             }
 
-
         }
+
+
 
     }
 
