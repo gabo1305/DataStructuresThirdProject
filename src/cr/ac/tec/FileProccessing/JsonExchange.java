@@ -5,7 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 
 public class JsonExchange {
-    private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").create();
+    private static final String FormatDate="yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    private static Gson gson = new GsonBuilder().setDateFormat(FormatDate).create();
     //private static  Gson gson=new Gson();
     private static JsonParser parser=new JsonParser();
     public static Object getObjectFromJson(String route, Class cl){
@@ -17,16 +18,12 @@ public class JsonExchange {
             return o;
         }
         catch (Exception exception){
-            System.out.println("Llegue a una excepcion");
-            System.out.println(exception.getMessage());
-            System.out.println( exception.getCause().toString());
             return null;
         }
     }
     public static void toJsonFromObject(String route, Object object){
         try {
            String text= gson.toJson(object);
-            System.out.println(text);
             PlainText.writeFile(route,text);
         }
         catch (Exception e){

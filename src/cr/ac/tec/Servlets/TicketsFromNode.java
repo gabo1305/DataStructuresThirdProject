@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 @WebServlet(value = "/ConsultNode")
 public class TicketsFromNode extends HttpServlet {
+    private final String Node="Node";
     /**
      *
      * @param req
@@ -26,12 +27,10 @@ public class TicketsFromNode extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer id=Integer.parseInt(req.getParameter("Node"));
-        System.out.println(id);
+        Integer id=Integer.parseInt(req.getParameter(Node));
         RequestManager requestManager=RequestManager.getInstance();
         ArrayList<Ticket> List=requestManager.getTicketByNode(id);
         String re=JsonExchange.getStringFromObject(List);
-        System.out.println(re);
         resp.getWriter().print(re);
     }
 

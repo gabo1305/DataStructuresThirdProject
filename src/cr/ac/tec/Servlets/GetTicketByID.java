@@ -16,6 +16,7 @@ import java.io.IOException;
  */
 @WebServlet(value = "/getTicketByID")
 public class GetTicketByID extends HttpServlet {
+    private static final String IDUser="ID";
     /**
      *
      * @param req
@@ -37,7 +38,7 @@ public class GetTicketByID extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String ID=req.getParameter("ID");
+        String ID=req.getParameter(IDUser);
         Ticket ticket= RequestManager.getInstance().Ticket(ID);
         resp.getWriter().print(JsonExchange.getStringFromObject(ticket));
     }

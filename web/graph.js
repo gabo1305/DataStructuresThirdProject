@@ -1,4 +1,4 @@
-const url='http://localhost:9080/cual';
+const url='http://localhost:9080/Update';
 var Http= new XMLHttpRequest();
 const event1="clickNode";
 const HttpMethod="GET";
@@ -25,13 +25,16 @@ var s = new sigma(
     {
         renderer: {
             container: document.getElementById('sigma-container'),
-            type: 'canvas',
-            color:"#e1db00"
+            type: sigma.renderers.canvas,
+            color:"#e1db00",
+
         },
         settings: {
             minArrowSize:8,
             minNodeSize: 20,
-            arrowSizeRatio: 1
+            arrowSizeRatio: 1,
+            edgeLabelSize: 50,
+            minEdgeSize:10,
 
         }
     }

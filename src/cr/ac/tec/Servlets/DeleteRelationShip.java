@@ -14,6 +14,11 @@ import java.io.IOException;
  */
 @WebServlet(value = "/deleteRoute")
 public class DeleteRelationShip extends HttpServlet {
+    private static final String Estacion="Estaciones";
+    private static final String Parada="Paradas";
+    private static final String CorrectMessage="The route hasn't been deleted";
+    private static final String IncorrectMessage ="The route has been deleted";
+
     /**
      *
      * @param req
@@ -23,12 +28,11 @@ public class DeleteRelationShip extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String start=req.getParameter("Estaciones");
-        String end=req.getParameter("Paradas");
+        String start=req.getParameter(Estacion);
+        String end=req.getParameter(Parada);
         RequestManager requestManager=RequestManager.getInstance();
-        if(!requestManager.deleteRelationShip(start,end))resp.getWriter().print("The route hasn't been deleted");
-        else resp.getWriter().print("The route has been deleted");
-        //resp.sendRedirect("/Admin.jsp");
+        if(!requestManager.deleteRelationShip(start,end))resp.getWriter().print(CorrectMessage);
+        else resp.getWriter().print(IncorrectMessage);
     }
 
     /**

@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="tableStyle.css">
 </head>
 
-<script src="noBack.js"></script>
+
 
 <script>
-    const url='http://localhost:9080/cual';
+    const url='http://localhost:9080/Update';
     const url2='http://localhost:9080/addStopping';
     const url3='http://localhost:9080/deleteNode';
     const url4='http://localhost:9080/newRoute';
@@ -37,7 +37,7 @@
     }
 
     function getUsers() {
-        Http2.open("GET",'http://localhost:9080/usersXd')
+        Http2.open("GET",'http://localhost:9080/usersRoute')
         Http2.send();
         Http2.onreadystatechange = (e) =>{
             usersText = Http2.responseText;

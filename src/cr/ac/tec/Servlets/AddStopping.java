@@ -17,6 +17,8 @@ public class AddStopping extends HttpServlet {
     private final static String StopName="StopName";
     private final static String XPos="XAxis";
     private final static String YPos="YAxis";
+    private final static String CorrectMessage="The node has been added";
+    private final static String InCorrectMessage="The node already exist";
 
     /**
      *
@@ -30,11 +32,9 @@ public class AddStopping extends HttpServlet {
         String name=req.getParameter(StopName);
         String posX=req.getParameter(XPos);
         String posY=req.getParameter(YPos);
-        if(RequestManager.getInstance().addNode(name,posX,posY))resp.getWriter().print("The node has been added");
-        else resp.getWriter().print("The node already exist");
-        //resp.sendRedirect("/Admin.jsp");
+        if(RequestManager.getInstance().addNode(name,posX,posY))resp.getWriter().print(CorrectMessage);
+        else resp.getWriter().print(InCorrectMessage);
     }
-
     /**
      *
      * @param req

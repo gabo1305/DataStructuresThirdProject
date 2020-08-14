@@ -1,5 +1,6 @@
 package cr.ac.tec.Classes;
 
+
 import cr.ac.tec.FileProccessing.PlainText;
 import cr.ac.tec.Rail.RequestManager.RequestManager;
 
@@ -10,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "usersXd",value = "/usersXd")
-public class UsersXd extends HttpServlet {
+@WebServlet(value = "/usersRoute")
+
+public class UsersRoute extends HttpServlet {
+    private final String UsersRoute="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\Users.json";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestManager.getInstance().updateGraphFileRep();
-        resp.getWriter().print(PlainText.readFile("C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\Users.json"));
+        resp.getWriter().print(PlainText.readFile(UsersRoute));
     }
 }

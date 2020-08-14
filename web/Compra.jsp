@@ -4,7 +4,7 @@
 
 <script>
 
-    const url='http://localhost:9080/cual';
+    const url='http://localhost:9080/Update';
     const url2='http://localhost:9080/getPrice';
     const url3='http://localhost:9080/buy'
     const Http= new XMLHttpRequest();
@@ -36,24 +36,36 @@
     }
 
     function getPrice() {
-        var e =document.getElementById("dropdownEstacionInicial");
-        var f =document.getElementById("dropdownEstacionFinal");
-        var g=document.getElementById("AmountId");
-        var get=url2+Inicio+e.options[e.selectedIndex].value+Final+f.options[f.selectedIndex].value+cantidad+g.value;
+        var inicial =document.getElementById("dropdownEstacionInicial");
+        var final =document.getElementById("dropdownEstacionFinal");
+        var cantidadtickets=document.getElementById("AmountId");
 
-        document.getElementById("AmountId").disabled=true;
-        document.getElementById("buyID").disabled=true;
 
-        Http2.open(HttpMethod,get)
-        Http2.send();
-        console.log(get)
-        Http2.onreadystatechange = (e) =>{
-            document.getElementById("AmountId").disabled=false;
-            document.getElementById("buyID").disabled=false;
-            textPrice = Http2.responseText;
-            document.getElementById("textprueba").innerText=textPrice;
-            console.log(textPrice);
-        };
+        var get=url2+Inicio+inicial.options[inicial.selectedIndex].value+Final+final.options[final.selectedIndex].value+cantidad+cantidadtickets.value;
+        console.log("f"+cantidadtickets.value+"f")
+        if (cantidadtickets.value==""){
+            alert("please enter a number of tickets");
+            return
+        }
+        else{
+
+            document.getElementById("AmountId").disabled=true;
+            document.getElementById("buyID").disabled=true;
+
+            Http2.open(HttpMethod,get)
+            Http2.send();
+            console.log(get)
+            Http2.onreadystatechange = (e) =>{
+                document.getElementById("AmountId").disabled=false;
+                document.getElementById("buyID").disabled=false;
+                textPrice = Http2.responseText;
+                document.getElementById("textprueba").innerText=textPrice;
+                console.log(textPrice);
+            };
+
+        }
+
+
     }
 
 
@@ -77,14 +89,17 @@
         var Amount = document.getElementById("AmountId").value
         var Date = document.getElementById("date").value
         var get = url3 + "?UserName=" + UserName + "&Start=" + Start + "&End=" + End + "&Amount=" + Amount + "&Date=" + Date;
+
         Http3.open(HttpMethod, get)
         Http3.send()
         console.log("get:" + get)
         Http3.onreadystatechange = (e) => {
             if(Http3.readyState === XMLHttpRequest.DONE) {
                 console.log("Http3 response text: " + Http3.responseText)
-                alert(Http3.responseText)
+                alert("purchase completed"+ Http3.responseText)
             }
+
+
         }
 
     }
@@ -116,19 +131,19 @@
     Select a finishing point <br>
 
 
-    <select id = "dropdownEstacionFinal"  name="End" required>
+    <select id = "dropdownEstacionFinal"  name="End" required >
 
     </select><br><br>
 
     select how many tickets you want <br>
-    <input type="number"  id="AmountId" name="Amount" required
-    min="1" max="100">
+    <input type="number"  id="AmountId" name="Amount" value="1" required
+    min="1" max="100" >
     <br>
 
     select the date of use of your ticket<br>
 
-    <input type="date" name="Date" required id="date"
-    min="2020-08-13" max="2021-01-01">
+    <input type="date" name="Date"  id="date"
+    min="2020-08-13" max="2021-01-01" required>
     <br>
 
 
@@ -142,7 +157,7 @@
     <br>
 
 
-<button type="button" id="GetID"  onclick="getPrice()">Get Price</button>
+    <button type="button" id="GetID"  onclick="getPrice()">Get Price</button>
 
 </body>
 

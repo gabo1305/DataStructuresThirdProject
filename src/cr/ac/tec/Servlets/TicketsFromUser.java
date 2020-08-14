@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 @WebServlet(value = "ConsultFromUser")
 public class TicketsFromUser extends HttpServlet {
+    private final String UserNameParameter="UserName";
     /**
      *
      * @param req
@@ -26,7 +27,7 @@ public class TicketsFromUser extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String UserName=req.getParameter("UserName");
+        String UserName=req.getParameter(UserNameParameter);
         RequestManager requestManager=RequestManager.getInstance();
         ArrayList<Ticket> List=requestManager.getTicketsByUser(UserName);
         resp.getWriter().print(JsonExchange.getStringFromObject(List));

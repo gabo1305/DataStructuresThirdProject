@@ -14,6 +14,10 @@ import java.io.IOException;
  */
 @WebServlet(value = "/deleteNode")
 public class DeleteStopping extends HttpServlet {
+    private static final String NodeID="NodeID";
+    private static final String CorrectMessage="The node has been deleted";
+    private static final String IncorrectMessage="We couldn't delete the stopping";
+
     /**
      *
      * @param req
@@ -35,10 +39,9 @@ public class DeleteStopping extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String Node=req.getParameter("NodeID");
+        String Node=req.getParameter(NodeID);
         RequestManager requestManager=RequestManager.getInstance();
-        if(!requestManager.deleteNode(Node))resp.getWriter().print("We couldn't delete the stopping");
-        else resp.getWriter().print("The node has been deleted");
-        //resp.sendRedirect("/Admin.jsp");
+        if(!requestManager.deleteNode(Node))resp.getWriter().print(IncorrectMessage);
+        else resp.getWriter().print(CorrectMessage);
     }
 }

@@ -18,11 +18,13 @@ import java.io.IOException;
 @WebServlet(name = "LoginServlet",value = "/log")
 public class Login extends HttpServlet {
     private final String name="UserName";
+    private final String LoginRoute="login.jsp";
+    private final String Graphic="prueba.html";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userID=req.getParameter(name);
         if(!UserVerification.ced(userID)){
-            resp.sendRedirect("login.jsp");
+            resp.sendRedirect(LoginRoute);
             return;
         }
 
@@ -31,7 +33,7 @@ public class Login extends HttpServlet {
         tree.attach(user);
         user=tree.getMember(user);
         resp.getWriter().print(user.getID());
-        resp.sendRedirect("prueba.html");
+        resp.sendRedirect(Graphic);
     }
 
     /**

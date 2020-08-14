@@ -16,6 +16,7 @@ import java.io.IOException;
  */
 @WebServlet(value = "consultDate")
 public class getTicketFromDate extends HttpServlet {
+    private static final String UserDate="Date";
     /**
      *
      * @param req
@@ -38,7 +39,7 @@ public class getTicketFromDate extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String Date=req.getParameter("Date");
+        String Date=req.getParameter(UserDate);
         RequestManager requestManager=RequestManager.getInstance();
        resp.getWriter().print(JsonExchange.getStringFromObject(requestManager.getTicketsFromDate(Date)));
     }

@@ -14,6 +14,9 @@ import java.io.IOException;
  */
 @WebServlet(value = "/getPrice")
 public class GetPrice extends HttpServlet {
+    private static final String StartPoint="Start";
+    private static final String EndPoint="End";
+    private static final String Amounttickets="Amount";
     /**
      *
      * @param req
@@ -23,13 +26,17 @@ public class GetPrice extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String Start=req.getParameter("Start");
-        String End=req.getParameter("End");
-        String Amount=req.getParameter("Amount");
-        System.out.println(Amount);
+        String Start=req.getParameter(StartPoint);
+        String End=req.getParameter(EndPoint);
+        String Amount=req.getParameter(Amounttickets);
         int ticketNumber=Integer.parseInt(Amount);
         RequestManager requestManager=RequestManager.getInstance();
         double price=requestManager.getPrice(Start,End);
+        System.out.println(Start+End +"fefggeg");
+     if(price==Integer.MAX_VALUE){
+            resp.getWriter().print("There route is not available or you did not select a station");
+            return;
+        }
         double saved=price;
         price=ticketNumber*price;
         if(ticketNumber>45)ticketNumber=45;

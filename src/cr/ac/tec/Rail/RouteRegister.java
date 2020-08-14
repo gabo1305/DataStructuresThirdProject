@@ -3,7 +3,7 @@ import cr.ac.tec.FileProccessing.JsonExchange;
 import java.util.ArrayList;
 public class RouteRegister {
     private ArrayList<ArrayList<ArrayList<Integer>>> RoutesRegister;
-    private final String route="C:\\Users\\migue\\DataStructuresThirdProyect\\JsonFiles\\ReservationRegister.json";
+    private final String route="C:\\Users\\Gabriel Solano\\Documents\\GitHub\\DataStructuresThirdProyect\\JsonFiles\\ReservationRegister.json";
     public RouteRegister(int data){
         ArrayList<ArrayList<ArrayList<Integer>>> List=new ArrayList<>();
         if(data<0)return;
@@ -25,10 +25,7 @@ public class RouteRegister {
         }
     }
     public boolean check(int a, int b){
-        System.out.println(this.RoutesRegister.size());
-        System.out.println("llamado a verificacion");
         if(!verification(a,b))return false;
-        System.out.println("Print del check despues del false");
         return RoutesRegister.get(a).get(b).isEmpty();
     }
     public ArrayList<Integer> getIDs(int a, int b){
@@ -37,9 +34,7 @@ public class RouteRegister {
     }
     public void AddData(int data,int a, int b){
         if(!verification(a,b))return;
-        System.out.println("llegue al mundo del mago oscuro");
         RoutesRegister.get(a).get(b).add(data);
-        System.out.println(RoutesRegister.get(a).get(b).get(0));
         writeData();
     }
     public void deleteData(int data,int a, int b){
@@ -91,8 +86,6 @@ public class RouteRegister {
     }
     private boolean verification(int a,int b){
         if(!verification(b))return false;
-        System.out.println("esto es a: "+a);
-        System.out.println("esto es b: "+b);
         if(!verification(a))return false;
         return true;
     }
@@ -114,7 +107,6 @@ public class RouteRegister {
         for(int i=0;i<source.size();i++){
             temp=source.get(i);
             for(int j=0;j<temp.size();j++){
-                System.out.println(temp.get(j));
                 if(!List.contains(temp.get(j))) List.add(temp.get(j));
             }
         }
@@ -139,10 +131,6 @@ public class RouteRegister {
         if(theList!=null)this.RoutesRegister=theList;
     }
     public void writeData(){
-
-      //  System.out.println(JsonExchange.toJsonFromObject(route,this.RoutesRegister));
-        System.out.println("-----------------------------------------------------------------");
-        System.out.println(JsonExchange.getStringFromObject(this.RoutesRegister));
         JsonExchange.toJsonFromObject(route,this.RoutesRegister);
     }
     private void appendArray(ArrayList<ArrayList<ArrayList<Integer>>>List ,int[][][] array){

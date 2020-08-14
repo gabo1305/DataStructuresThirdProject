@@ -28,6 +28,12 @@ public class BuyTicket extends HttpServlet {
     private static final String Amount="Amount";
     private static final String date="Date";
     private static final int zero=0;
+    private static final String DateFormat="yyyy-MM-dd";
+    private static final String IncorrectMessage="There is no route between the selected routes";
+    private static final String CorrectMessage="The route is ";
+
+
+
 
     /**
      *
@@ -44,27 +50,18 @@ public class BuyTicket extends HttpServlet {
             String startStop = req.getParameter(Start);
             String endStop = req.getParameter(End);
             String date1 = req.getParameter(date);
-            Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse(date1);
-            System.out.println("La fecha es "+date2);
-            System.out.println("Name " + Name);
-            System.out.println("Start " + startStop);
-            System.out.println("End " + endStop);
+            Date date2 = new SimpleDateFormat(DateFormat).parse(date1);
+
             int amount = Integer.parseInt(req.getParameter(Amount));
             ArrayList<Ticket> ArrayListTicket = requestManager.getTicket(Name, startStop, endStop, amount,date2);
             if(ArrayListTicket==null || ArrayListTicket.isEmpty()) {
-                resp.getWriter().print("There is no route between the selected routes");
-                System.out.println("There is no route between the selected routes");
+                resp.getWriter().print(IncorrectMessage);
             }
             else {
-                System.out.println("The route is "+JsonExchange.getStringFromObject(ArrayListTicket.get(zero).getTrajectory()));
-                resp.getWriter().print("The route is "+JsonExchange.getStringFromObject(ArrayListTicket.get(zero).getTrajectory()));
+                resp.getWriter().print(CorrectMessage+JsonExchange.getStringFromObject(ArrayListTicket.get(zero).getTrajectory()));
             }
-            //resp.sendRedirect("/prueba.html");
-
-
         }
         catch (Exception e){
-            System.out.println("error del catch: " +e.getMessage());
         }
     }
 
