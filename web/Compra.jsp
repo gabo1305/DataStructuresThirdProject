@@ -92,7 +92,7 @@
         console.log("xdxdxd"+UserName+Start+End+Amount+Date)
         var get = url3 + "?UserName=" + UserName + "&Start=" + Start + "&End=" + End + "&Amount=" + Amount + "&Date=" + Date;
         if(Start=="" || End=="" || Amount==""||Date==""){
-            alert("nel llene espacios")
+            alert("please check, you have an unselected space")
         }else{
             Http3.open(HttpMethod, get)
             Http3.send()
