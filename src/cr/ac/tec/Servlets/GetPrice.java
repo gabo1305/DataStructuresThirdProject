@@ -17,6 +17,7 @@ public class GetPrice extends HttpServlet {
     private static final String StartPoint="Start";
     private static final String EndPoint="End";
     private static final String Amounttickets="Amount";
+    private static final String Incorrect="There route is not available or you did not select a station";
     /**
      *
      * @param req
@@ -32,9 +33,8 @@ public class GetPrice extends HttpServlet {
         int ticketNumber=Integer.parseInt(Amount);
         RequestManager requestManager=RequestManager.getInstance();
         double price=requestManager.getPrice(Start,End);
-        System.out.println(Start+End +"fefggeg");
      if(price==Integer.MAX_VALUE){
-            resp.getWriter().print("There route is not available or you did not select a station");
+            resp.getWriter().print(Incorrect);
             return;
         }
         double saved=price;

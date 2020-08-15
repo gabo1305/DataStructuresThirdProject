@@ -20,7 +20,6 @@
         Http.open(HttpMethod, url);
         Http.send();
         Http.onreadystatechange = (e) => {
-            //console.log(Http.responseText)
             text = Http.responseText;
             estaciones()
         };
@@ -30,7 +29,6 @@
     function all() {
         getText()
         usuario=sessionStorage.getItem('UserBuy')
-        console.log("usuario")
         document.getElementById("SavedUser").value=usuario;
 
     }
@@ -42,7 +40,7 @@
 
 
         var get=url2+Inicio+inicial.options[inicial.selectedIndex].value+Final+final.options[final.selectedIndex].value+cantidad+cantidadtickets.value;
-        console.log("f"+cantidadtickets.value+"f")
+
         if (cantidadtickets.value===""){
             alert("please enter a number of tickets");
             return
@@ -54,13 +52,13 @@
 
             Http2.open(HttpMethod,get)
             Http2.send();
-            console.log(get)
+
             Http2.onreadystatechange = (e) =>{
                 document.getElementById("AmountId").disabled=false;
                 document.getElementById("buyID").disabled=false;
                 textPrice = Http2.responseText;
                 document.getElementById("textprueba").innerText=textPrice;
-                console.log(textPrice);
+
             };
 
         }
@@ -89,33 +87,21 @@
         var Amount = document.getElementById("AmountId").value
         var Date = document.getElementById("date").value
 
-        console.log("xdxdxd"+UserName+Start+End+Amount+Date)
         var get = url3 + "?UserName=" + UserName + "&Start=" + Start + "&End=" + End + "&Amount=" + Amount + "&Date=" + Date;
         if(Start=="" || End=="" || Amount==""||Date==""){
             alert("please check, you have an unselected space")
         }else{
             Http3.open(HttpMethod, get)
             Http3.send()
-            console.log("get:" + get)
+
             Http3.onreadystatechange = (e) => {
                 if(Http3.readyState === XMLHttpRequest.DONE) {
-                    console.log("Http3 response text: " + Http3.responseText)
                     alert( Http3.responseText)
                 }
-
-
             }
-
         }
-
-
-
     }
-
-
-
 </script>
-
 
 <body onload="all()">
 
@@ -123,21 +109,15 @@
 
 <h2>Add your route to shopping cart </h2>
 
-
-
     ID Card <br>
     <input type="text" name="UserName" id="SavedUser" disabled>
     <br>
-
-
 
     Select a starting point <br>
     <select id = "dropdownEstacionInicial" name="Start" required>
     </select><br><br>
 
-
     Select a finishing point <br>
-
 
     <select id = "dropdownEstacionFinal"  name="End" required >
 
@@ -163,7 +143,6 @@
     <label id="textprueba" > </label>
 
     <br>
-
 
     <button type="button" id="GetID"  onclick="getPrice()">Get Price</button>
 

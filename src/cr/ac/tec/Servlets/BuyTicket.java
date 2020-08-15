@@ -48,9 +48,7 @@ public class BuyTicket extends HttpServlet {
             String Name = req.getParameter(UserName);
             RequestManager requestManager = RequestManager.getInstance();
             String startStop = req.getParameter(Start);
-            System.out.println("startStop: "+startStop);
             String endStop = req.getParameter(End);
-            System.out.println("endStop"+endStop);
             String date1 = req.getParameter(date);
             Date date2 = new SimpleDateFormat(DateFormat).parse(date1);
 

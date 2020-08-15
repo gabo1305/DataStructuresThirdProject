@@ -13,7 +13,6 @@
     const Http = new XMLHttpRequest();
     var ticketText;
     var yaEsta=false;
-    console.log(product);
 
     function all() {
         getTickets()
@@ -29,12 +28,11 @@
                 yaEsta=true;
             }
         };
-
     }
 
     function tickets() {
         obj = JSON.parse(ticketText)
-        var tableRow = "<tr><th>Ticket Id</th><th>Fecha</th><th>Trayectoria</th></tr>"
+        var tableRow = "<tr><th>Ticket Id</th><th>Date</th><th>Trajectory</th></tr>"
 
         for (var i=0; i<obj.length;i++){
             tableRow += "<tr><td>"+obj[i].ID+"</td><td>"+obj[i].date+"</td><td>"+obj[i].trajectory+"</td></tr>";
