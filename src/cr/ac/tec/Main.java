@@ -75,7 +75,7 @@ public class Main {
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\Nodes.json",the);
         boolean[][] taken=new boolean[13][13];
         //JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\TakenRoad.json",taken);
-      RouteRegister register=new RouteRegister(16);
+      RouteRegister register=new RouteRegister(13);
        // register.expand();
        register.writeData();
     }

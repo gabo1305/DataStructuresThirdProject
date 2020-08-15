@@ -206,6 +206,9 @@ public class RequestManager {
         newTicket.setTrajectory(ticket.getTrajectory());
         return newTicket;
     }
+    public double getEdgePrice(String From, String To){
+        return graph.getEdgePrice(From,To);
+    }
     public void getLabel(Ticket ticket){
         if(ticket==null)return;
         String[] route=ticket.getTrajectory();

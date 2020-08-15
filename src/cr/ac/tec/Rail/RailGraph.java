@@ -148,6 +148,16 @@ public class RailGraph {
         if(List.inList(node2))return true;
         return false;
     }
+    public double getEdgePrice(String Node1,String Node2){
+        if(Node1==null)return NullState;
+        if(Node2==null)return NullState;
+        Nodes From=getNode(Node1);
+        Nodes To=getNode(Node2);
+        if(From==null)return NullState;
+        if(To==null)return NullState;
+        double[] List=graph.getConnections(From);
+        return List[graph.getNodes().FindFirstInstancePosition(To)];
+    }
 
 
 }
