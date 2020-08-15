@@ -25,7 +25,7 @@ var s = new sigma(
     {
         renderer: {
             container: document.getElementById('sigma-container'),
-            type: sigma.renderers.canvas,
+            type: 'canvas',
             color:"#e1db00",
 
         },
@@ -33,8 +33,9 @@ var s = new sigma(
             minArrowSize:8,
             minNodeSize: 20,
             arrowSizeRatio: 1,
-            edgeLabelSize: 50,
-            minEdgeSize:10,
+            edgeLabelSize: 'proportional',
+            defaultEdgeLabelColor: "#ff0e00",
+            //minEdgeSize:10,
 
         }
     }

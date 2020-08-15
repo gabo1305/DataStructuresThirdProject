@@ -15,6 +15,8 @@ public class Edges {
     private String source;
     private String target;
     private String label;
+    private double size=20;
+    private final String type= "arrow";
 
     public String getLabel() {
         return label;
@@ -24,8 +26,7 @@ public class Edges {
         this.label = label;
     }
 
-    private double size=20;
-    private final String type= "arrow";
+
 
     /**
      * The constructor
