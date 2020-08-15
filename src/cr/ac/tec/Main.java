@@ -67,7 +67,7 @@ public class Main {
                 else matrix[i][j]=25*matrix[i][j];
             }
         }
-        JsonExchange.toJsonFromObject("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\JsonFiles\\RelationNodes.json",matrix);
+        JsonExchange.toJsonFromObject("C:\\Users\\migue\\DataStructuresThirdProject\\JsonFiles\\RelationNodes.json",matrix);
         RequestManager requestManager = RequestManager.getInstance();
         //requestManager.updateGraphFileRep();
         LinkedListTool<Nodes> tool=new LinkedListTool<>();

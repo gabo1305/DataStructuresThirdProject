@@ -1,25 +1,36 @@
 <html>
 
-<title>Railspot Login</title>
+<head>
+    <title>Railspot Login</title>
+    <link rel="stylesheet" href="styles/login.css">
 
-
-
+</head>
 
 <body>
 
-<h2>Login to continue</h2>
+<div class="logo">
+    <h1>Railspot</h1>
 
-<form action="login.jsp">
-    <input type="submit" value="Login as user">
-</form>
+    <p>
+        Travel fast. <br>
+        Travel safe.
+    </p>
+</div>
 
-<br><br>
+<div class="loginSystem">
+    <h3>Login to continue</h3>
+    <form action="login.jsp">
+        <input type="submit" id="btn_loginUser" value="Login as user">
+    </form>
 
-<h3>Login as admin</h3>
+    <br><br>
 
-<form  action="AdminLogin.jsp">
-    <input type="submit" value="Login as Admin">
-</form>
+    <h3>Login as admin</h3>
+
+    <form  action="AdminLogin.jsp">
+        <input type="submit" id="btn_loginAdmin" value="Login as Admin">
+    </form>
+</div>
 
 </body>
 

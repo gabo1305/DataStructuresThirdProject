@@ -43,7 +43,7 @@
 
         var get=url2+Inicio+inicial.options[inicial.selectedIndex].value+Final+final.options[final.selectedIndex].value+cantidad+cantidadtickets.value;
         console.log("f"+cantidadtickets.value+"f")
-        if (cantidadtickets.value==""){
+        if (cantidadtickets.value===""){
             alert("please enter a number of tickets");
             return
         }

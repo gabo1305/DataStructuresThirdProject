@@ -1,0 +1,62 @@
+html{
+    background-color: #dfe3ee;
+}
+div{
+    display: block;
+    float: left;
+}
+
+.logo h1{
+    color: darkred;
+    font-size: 4em;
+    argin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.logo p{
+    font-size: 28px;
+    font-family: Arial,sans-serif;
+    font-weight: normal;
+    line-height: 32px;
+    width: 350px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.logo{
+    margin-top: 200px;
+    margin-right: 100px;
+    margin-left: 300px;
+}
+
+.loginInfo{
+    font-family: Arial,sans-serif;
+    margin-top: 200px;
+    width: 225px;
+    height: 200px;
+    background-color: #FFFFFF;
+    border: 5px solid #FFFFFF;
+    border-radius: 15px;
+    padding-bottom: 15px;
+}
+
+.loginInfo p{
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+#User{
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+#btn_login{
+    margin-top: 10px;
+    font-size: 22px;
+    margin-left: 75px;
+}

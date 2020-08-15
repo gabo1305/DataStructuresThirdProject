@@ -17,10 +17,26 @@ function sendName() {
 
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="styles/userLogin.css">
 </head>
 <body>
-    Enter username:<input type="text" name="UserName" id="User" ><br>
-    <input type="submit" value="login" onclick="sendName()">
+
+<div class="logo">
+    <h1>Railspot</h1>
+
+    <p>
+        Travel fast. <br>
+        Travel safe.
+    </p>
+</div>
+
+<div class="loginInfo">
+
+    <p>To login as a user please enter you Identification number below</p>
+
+    <input type="text" name="UserName" id="User" ><br>
+    <input type="submit" value="login" id="btn_login" onclick="sendName()">
+</div>
 
 </body>
 </html>

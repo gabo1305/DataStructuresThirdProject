@@ -13,7 +13,7 @@
     const Http = new XMLHttpRequest();
     var yaEsta = false;
     var ticketTextPorRuta;
-    console.log(product);
+    console.log("esto es la ruta: "+product);
 
     function all() {
         console.log("llame el all")
@@ -26,6 +26,7 @@
         Http.onreadystatechange = (e) => {
             if (!yaEsta) {
                 ticketTextPorRuta = Http.responseText;
+                console.log("esto es la huevada xd: "+ticketTextPorRuta)
                 tickets()
                 yaEsta = true;
             }
@@ -35,6 +36,7 @@
 
     function tickets() {
         obj = JSON.parse(ticketTextPorRuta)
+        console.log(obj)
         var tableRow = "<tr><th>Ticket Id</th><th>Fecha</th><th>Trayectoria</th></tr>"
 
         for (var i=0; i<obj.length;i++){

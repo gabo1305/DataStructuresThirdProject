@@ -16,7 +16,7 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //resp.setContentType("application/json");
         RequestManager.getInstance().updateGraphFileRep();
-        resp.getWriter().print(PlainText.readFile("C:\\Tecnologico de Costa Rica\\Tercer Semestre\\Algoritmos y estructuras\\RailSpot\\web\\estaciones.json"));
+        resp.getWriter().print(PlainText.readFile("C:\\Users\\migue\\DataStructuresThirdProject\\web\\estaciones.json"));
 
     }
 }

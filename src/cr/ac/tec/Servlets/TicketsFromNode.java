@@ -28,6 +28,7 @@ public class TicketsFromNode extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id=Integer.parseInt(req.getParameter(Node));
+        System.out.println("esto es el id desde el servlet: "+id);
         RequestManager requestManager=RequestManager.getInstance();
         ArrayList<Ticket> List=requestManager.getTicketByNode(id);
         String re=JsonExchange.getStringFromObject(List);
